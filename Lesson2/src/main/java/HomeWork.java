@@ -35,7 +35,7 @@ public class HomeWork {
         System.out.println(0x6F);
 
 //        литерал типа float
-        System.out.println(2.1);
+        System.out.println(2.1F);
 
 //        литерал типа double.
         System.out.println(2.2);
@@ -46,7 +46,7 @@ public class HomeWork {
      * 2. Дополнительно: сделать проверку если сумма a и b больше чем максимальное значение int то вернуть -1
      **/
     public static int sum(int a, int b) {
-        long sum=(long) a+(long) b;
+        long sum=(long)a+b;
         if(sum > Integer.MAX_VALUE){
             sum=-1;
         }
