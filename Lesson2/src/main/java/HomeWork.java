@@ -85,7 +85,7 @@ public class HomeWork {
      * Метод должен return 3.0
      */
     public static double average(int[] array) {
-        int sum=0;
+        double sum=0;
         for(int i=0;i<array.length;i++){
             sum=sum+array[i];
         }
@@ -97,7 +97,7 @@ public class HomeWork {
      * Метод должен вернуть максимальый элемент массива. Пример: array = {1,2,10,3} метод возвращает 10
      **/
     public static int max(int[] array) {
-        int max=0;
+        int max=Integer.MIN_VALUE;
         for(int i=0;i<array.length;i++){
             if(array[i]>max){
                 max=array[i];
@@ -121,7 +121,7 @@ public class HomeWork {
      * return 20
      */
     public static double calculateHypotenuse(int a, int b) {
-        double hypotenuse=Math.pow(a,2.0)+Math.pow(b,2.0);
+        double hypotenuse=Math.sqrt(Math.pow(a,2.0)+Math.pow(b,2.0));
         return hypotenuse;
     }
 }
