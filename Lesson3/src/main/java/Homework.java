@@ -9,7 +9,6 @@ public class Homework {
         //table();
         // System.out.println(average(new int[]{1, 2, 3, 4, 5}));
         //System.out.println(max(new int[]{1, 2, 10, 3}));
-
     }
 
     //Задачи:
