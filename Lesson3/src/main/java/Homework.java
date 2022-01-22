@@ -14,11 +14,10 @@ public class Homework {
     //Задачи:
     //1) Используя тип данных char и операцию инкремента вывести на консоль все буквы английского алфавита
     private static void printAlfabet() {
-        char ch = 97;
-        char[] mas = new char[26];
+        char ch = 96;
         for (int i = 0; i < 26; i++) {
-            mas[i] = ch++;
-            System.out.print(mas[i] + " ");
+            ch = ++ch;
+            System.out.print(ch + " ");
         }
     }
 
@@ -75,7 +74,7 @@ public class Homework {
     // далее оно должно выводиться на экран (для Петрова) и на следующей строке (для сотрудниц) должна
     // выводиться фраза о количестве полных часов, содержащихся в n секундах.
     private static void secsTohours() {
-        int secLeft = (int) (Math.random() * 28800 + 1);
+        int secLeft = (int) (Math.random() * 28800 + 0.1);
         int hoursLeft = secLeft / 3600;
         switch (hoursLeft) {
             case 8:
@@ -130,9 +129,9 @@ public class Homework {
     private static void table() {
         String[][] table = new String[9][9];
         table[0] = new String[]{"таблица преобразования", " byte", " short", " char", " int", " long", " float", " double", " boolean"};
-        table[1] = new String[]{"byte", " ня", " я", " ня", " ня", " ня", " ня", " ня", " х"};
-        table[2] = new String[]{"short", " я", " т", " ня", " ня", " ня", " ня", " ня", " х"};
-        table[3] = new String[]{"char", " я", " я", " т", " ня", " ня", " ня", " ня", " х"};
+        table[1] = new String[]{"byte", " т", " ня", " я", " ня", " ня", " ня", " ня", " х"};
+        table[2] = new String[]{"short", " я", " т", " я", " ня", " ня", " ня", " ня", " х"};
+        table[3] = new String[]{"char", " я", " я", " т", " я", " ня", " ня", " ня", " х"};
         table[4] = new String[]{"int", " я", " я", " я", " т", " ня", " ня", " ня", " х"};
         table[5] = new String[]{"long", " я", " я", " я", " я", " т", " ня", " ня", " х"};
         table[6] = new String[]{"float", " я", " я", " я", " я", " я", " т", " ня", " х"};
