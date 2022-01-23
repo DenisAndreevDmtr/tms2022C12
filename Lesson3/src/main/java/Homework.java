@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class Homework {
     public static void main(String[] args) {
-        //printAlfabet();
+        printAlfabet();
         //numberCheck();
         // minAbsCheck();
-        secsTohours();
+        //secsTohours();
         //table();
         // System.out.println(average(new int[]{1, 2, 3, 4, 5}));
         //System.out.println(max(new int[]{1, 2, 10, 3}));
@@ -15,9 +15,9 @@ public class Homework {
     //Задачи:
     //1) Используя тип данных char и операцию инкремента вывести на консоль все буквы английского алфавита
     private static void printAlfabet() {
-        char ch = 96;
+        char ch = 'a';
         for (int i = 0; i < 26; i++) {
-            System.out.print(++ch + " ");
+            System.out.print(ch++ + " ");
         }
     }
 
