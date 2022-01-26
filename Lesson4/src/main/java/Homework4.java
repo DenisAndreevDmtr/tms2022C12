@@ -5,12 +5,12 @@ public class Homework4 {
     public static void main(String[] args) {
         //      weekDay();
         // countAmebs();
-        // numberRank(-555555);
-        //zodiacSign(2, 1);
+        //numberRank(-5555555);
+        //zodiacSign(-20, 2);
         //printArray();
         //System.out.println(operation(-7));
         //System.out.println("количество нечетных чисел "+calculateCountOfOddElementsInMatrix(new int[]{1, 9, 10, 3, 7}));
-        // countDevs(61);
+        //countDevs(34);
         //foobar(15);
         //printPrimeNumbers();
     }
@@ -61,7 +61,7 @@ public class Homework4 {
 //        Надо вывести на экран сколько в этом числе цифр и положительное оно или отрицательное.
 //        Например, Введите число: 5
 //        "5 - это положительное число, количество цифр = 1" (исходя из задания предполагаем, что вводится целое число)
-    private static void numberRank(int number) {
+   /* private static void numberRank(int number) {
         if (number > 0) {
             String str = Integer.toString(number);
             System.out.println("число положительное, количество цифр в числе " + str.length());
@@ -75,32 +75,51 @@ public class Homework4 {
             System.out.println("число 0");
         }
     }
+*/
+    private static void numberRank(int number) {
+        if (number == 0) {
+            System.out.println("число 0");
+        } else {
+            String s = isPositive(number) == true ? "число положительное, количество цифр в числе " + strLength(number) : "число отрицательное, количество цифр в числе " + (strLength(number) - 1);
+            System.out.println(s);
+        }
+    }
+
+    private static boolean isPositive(int number) {
+        return number > 0 ? true : false;
+    }
+
+    private static int strLength(int number) {
+        String str = Integer.toString(number);
+        int count = str.length();
+        return count;
+    }
 
     //4) Дано 2 числа, день и месяц рождения. Написать программу, которая определяет знак зодиака человека.
     private static void zodiacSign(int day, int month) {
-        if (day >= 21 && month == 1 || day <= 19 && month == 2) {
+        if (day >= 21 && month == 1 && day > 0 || day <= 19 && month == 2 && day > 0) {
             System.out.println("Водолей");
-        } else if (day > 19 && month == 2 || day <= 20 && month == 3) {
+        } else if (day > 19 && month == 2 && day > 0 || day <= 20 && month == 3 && day > 0) {
             System.out.println("Рыбы");
-        } else if (day > 20 && month == 3 || day <= 20 && month == 4) {
+        } else if (day > 20 && month == 3 && day > 0 || day <= 20 && month == 4 && day > 0) {
             System.out.println("Овен");
-        } else if (day > 20 && month == 4 || day <= 21 && month == 5) {
+        } else if (day > 20 && month == 4 && day > 0 || day <= 21 && month == 5 && day > 0) {
             System.out.println("Телец");
-        } else if (day > 21 && month == 5 || day <= 21 && month == 6) {
+        } else if (day > 21 && month == 5 && day > 0 || day <= 21 && month == 6 && day > 0) {
             System.out.println("Близнецы");
-        } else if (day > 21 && month == 6 || day <= 22 && month == 7) {
+        } else if (day > 21 && month == 6 && day > 0 || day <= 22 && month == 7 && day > 0) {
             System.out.println("Рак");
-        } else if (day > 22 && month == 7 || day <= 21 && month == 8) {
+        } else if (day > 22 && month == 7 && day > 0 || day <= 21 && month == 8 && day > 0) {
             System.out.println("Лев");
-        } else if (day > 21 && month == 8 || day <= 23 && month == 9) {
+        } else if (day > 21 && month == 8 && day > 0 || day <= 23 && month == 9 && day > 0) {
             System.out.println("Дева");
-        } else if (day > 23 && month == 9 || day <= 23 && month == 10) {
+        } else if (day > 23 && month == 9 && day > 0 || day <= 23 && month == 10 && day > 0) {
             System.out.println("Весы");
-        } else if (day > 23 && month == 10 || day <= 23 && month == 11) {
+        } else if (day > 23 && month == 10 && day > 0 || day <= 23 && month == 11 && day > 0) {
             System.out.println("Скорпион");
-        } else if (day > 23 && month == 11 || day <= 22 && month == 12) {
+        } else if (day > 23 && month == 11 && day > 0 || day <= 22 && month == 12 && day > 0) {
             System.out.println("Стрелец");
-        } else if (day > 22 && month == 12 || day <= 20 && month == 1) {
+        } else if (day > 22 && month == 12 && day > 0 || day <= 20 && month == 1 && day > 0) {
             System.out.println("Козерог");
         } else {
             System.out.println("введена некорректная информация");
@@ -184,11 +203,11 @@ public class Homework4 {
     public static void countDevs(int count) {
         if (count / 10 == 0) {
             countOneDevs(count);
-        } else if (count % 20 == 1) {
+        } else if (count % 10 == 1) {
             System.out.println(count + " програмист");
-        } else if (count % 20 > 1 && count % 20 < 5) {
+        } else if (count % 10 > 1 && count % 10 < 5) {
             System.out.println(count + " програмиста");
-        } else if (count % 20 >= 5 && count % 20 < 20 || count % 20 == 0) {
+        } else if (count % 10 >= 5 && count % 10 < 10 || count % 10 == 0) {
             System.out.println(count + " програмистов");
         }
 
@@ -228,8 +247,7 @@ public class Homework4 {
     public static void printPrimeNumbers() {
         int i = 0;
         int j = 0;
-        int countPrime = 1;
-        /*1 уже известно, что простое+нарушение логики 2 делителя*/
+        int countPrime = 0;
         for (i = 2; i < 1000; i++) {
             int countDel = 0;
             for (j = 1; j <= i; j++) {
