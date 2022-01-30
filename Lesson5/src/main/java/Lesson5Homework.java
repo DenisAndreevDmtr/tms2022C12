@@ -1,9 +1,10 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Lesson5Homework {
     public static void main(String[] args) {
-        //    sum(3, -2);
+        //sum(5, 0);
         //masA();
         //masB();
         //masC();
@@ -12,8 +13,8 @@ public class Lesson5Homework {
         //maxIndex();
         //replaseElements();
         //replaseMaxZero(new int[]{4, 5, 0, 23, 77, 0, 8, 9, 101, 2});
-        //dublicatesElements(new int[]{0,3,46,3,2,1,2});
-        // masTrapon();
+        //dublicatesElements(new int[]{1, 1, 1, 3, 4, 1,5, 5});
+        //transportedMas();
         //calculateSumOfDiagonalElements();
         //printMatrix();
         // additionlTask();
@@ -125,7 +126,7 @@ public class Lesson5Homework {
     private static void reverseMas() {
         int[] mas = new int[50];
         int a = 1;
-        for (int i = 1; i < mas.length; i += 2) {
+        for (int i = 0; i < mas.length; i++) {
             mas[i] = a;
             a = a + 2;
             System.out.print(mas[i] + " ");
@@ -204,31 +205,48 @@ public class Lesson5Homework {
 
         if (isDublicates(mas)) {
             System.out.print("Массив имеет повторяющиеся элементы ");
+            int[] mas2 = new int[mas.length];
+            int index = 0;
             for (int i = 0; i < mas.length; i++) {
                 int example = mas[i];
                 for (int j = i + 1; j < mas.length; j++) {
                     if (example == mas[j]) {
-                        System.out.print(mas[j] + " ");
+                        mas2[index] = example;
+                        index++;
                     }
                 }
             }
+
+            int[] sortedDublicates = Arrays.copyOf(mas2, index);
+            boolean[] flags = new boolean[sortedDublicates.length];
+            Arrays.sort(sortedDublicates);
+            for (int i = 0; i < sortedDublicates.length - 1; i++) {
+                if (sortedDublicates[i] == sortedDublicates[i + 1]) {
+                    flags[i + 1] = true;
+                }
+            }
+
+            for (int i = 0; i < sortedDublicates.length; i++) {
+                if (!flags[i]) {
+                    System.out.print(mas[i] + " ");
+                }
+            }
+
         } else {
             System.out.println("Массив не имеет повторяющихся элементов");
         }
     }
 
     private static boolean isDublicates(int[] mas) {
-        boolean check = false;
         for (int i = 0; i < mas.length; i++) {
             int example = mas[i];
             for (int j = i + 1; j < mas.length; j++) {
                 if (example == mas[j]) {
-                    check = true;
-                    break;
+                    return true;
                 }
             }
         }
-        return check;
+        return false;
     }
 
 //    8) Создаём квадратную матрицу, размер вводим с клавиатуры.
@@ -240,37 +258,33 @@ public class Lesson5Homework {
 //          3 3 4 5      3 8 4 6
 //          1 5 6 7      4 9 5 7
 
-    private static void masTrapon() {
-        System.out.println("Введите размерность массива в виде целого числа более 2");
-        Scanner sc = new Scanner(System.in);
+    private static void transportedMas() {
         int s = 0;
         Random random = new Random();
-        if (sc.hasNextInt()) {
-            s = sc.nextInt();
-        } else {
-            System.out.println("введена некорректная размерность массива");
+        do {
+            System.out.println("Введите размерность двумерного массива в виде целого числа более 2");
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextInt()) {
+                s = sc.nextInt();
+            }
         }
-        if (s < 2) {
-            System.out.println("введена некорректная размерность массива");
-        } else {
-            System.out.println("исходная матрица");
-            int mas[][] = new int[s][s];
-            for (int i = 0; i < mas.length; i++) {
-                for (int j = 0; j < mas[i].length; j++) {
-                    mas[i][j] = random.nextInt(51);
-                    System.out.print(mas[i][j] + " ");
-                }
-                System.out.println();
+        while (s < 2);
+        int mas[][] = new int[s][s];
+        for (int i = 0; i < mas.length; i++) {
+            for (int j = 0; j < mas[i].length; j++) {
+                mas[i][j] = random.nextInt(51);
+                System.out.print(mas[i][j] + " ");
             }
-            System.out.println("транспонированная матрица");
-            int mas2[][] = new int[s][s];
-            for (int i = 0; i < mas2.length; i++) {
-                for (int j = 0; j < mas2[i].length; j++) {
-                    mas2[i][j] = mas[j][i];
-                    System.out.print(mas2[i][j] + " ");
-                }
-                System.out.println();
+            System.out.println();
+        }
+        System.out.println("транспонированная матрица");
+        int mas2[][] = new int[s][s];
+        for (int i = 0; i < mas2.length; i++) {
+            for (int j = 0; j < mas2[i].length; j++) {
+                mas2[i][j] = mas[j][i];
+                System.out.print(mas2[i][j] + " ");
             }
+            System.out.println();
         }
     }
 
@@ -278,33 +292,31 @@ public class Lesson5Homework {
      * заполнить рандомно 2-х мерный массив и посчитать сумму элементов на диагонали
      */
     public static void calculateSumOfDiagonalElements() {
-        System.out.println("Введите размерность массива в виде целого числа более 2");
-        Scanner sc = new Scanner(System.in);
         int s = 0;
         Random random = new Random();
-        if (sc.hasNextInt()) {
-            s = sc.nextInt();
-        } else {
-            System.out.println("введена некорректная размерность массива");
-        }
-        if (s < 2) {
-            System.out.println("введена некорректная размерность массива");
-        } else {
-            int mas[][] = new int[s][s];
-            System.out.println("исходный массив");
-            for (int i = 0; i < mas.length; i++) {
-                for (int j = 0; j < mas[i].length; j++) {
-                    mas[i][j] = random.nextInt(6);
-                    System.out.print(mas[i][j] + " ");
-                }
-                System.out.println();
+        do {
+            System.out.println("Введите размерность двумерного массива в виде целого числа более 2");
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextInt()) {
+                s = sc.nextInt();
             }
-            int sum = 0;
-            for (int i = 0; i < mas.length; i++) {
-                sum = sum + mas[i][i];
-            }
-            System.out.println("сумма элементов диагонали равняется " + sum);
         }
+        while (s < 2);
+        int mas[][] = new int[s][s];
+        System.out.println("исходный массив");
+        for (int i = 0; i < mas.length; i++) {
+            for (int j = 0; j < mas[i].length; j++) {
+                mas[i][j] = random.nextInt(6);
+                System.out.print(mas[i][j] + " ");
+            }
+            System.out.println();
+        }
+        int sum = 0;
+        for (int i = 0; i < mas.length; i++) {
+            sum = sum + mas[i][i];
+        }
+        System.out.println("сумма элементов диагонали равняется " + sum);
+
     }
 
     /**
@@ -330,53 +342,52 @@ public class Lesson5Homework {
      * Обратите внимание, что 21% 3 == 0 и 21% 7 = 0, но выводить надо не +-, а +
      */
     public static void printMatrix() {
-        System.out.println("Введите размерность двумерного массива в виде целого чисел более 2. Вводится число строк массива. Этап 1 из 2");
-        Scanner sc = new Scanner(System.in);
         int s = 0;
         int c = 0;
         Random random = new Random();
-        if (sc.hasNextInt()) {
-            s = sc.nextInt();
-        } else {
-            System.out.println("введена некорректная размерность массива");
-        }
-        System.out.println("Введите размерность двумерного массива в виде целого чисел более 2. Вводится число столбцов массива. Этап 2 из 2");
-        if (sc.hasNextInt()) {
-            c = sc.nextInt();
-        } else {
-            System.out.println("введена некорректная размерность массива");
-        }
-        if (s < 2 || c < 2) {
-            System.out.println("введена некорректная размерность массива");
-        } else {
-            int mas[][] = new int[s][c];
-            System.out.println("исходный массив");
-            for (int i = 0; i < mas.length; i++) {
-                for (int j = 0; j < mas[i].length; j++) {
-                    mas[i][j] = random.nextInt(101);
-                    System.out.print(mas[i][j] + " ");
-                }
-                System.out.println();
+        do {
+            System.out.println("Введите размерность двумерного массива в виде целого чисел более 2. Вводится число строк массива. Этап 1 из 2");
+            Scanner sc = new Scanner(System.in);
+
+
+            if (sc.hasNextInt()) {
+                s = sc.nextInt();
             }
-            System.out.println("изменение массива");
-            String mas2[][] = new String[s][c];
-            for (int i = 0; i < mas2.length; i++) {
-                for (int j = 0; j < mas2[i].length; j++) {
-                    if (mas[i][j] % 3 == 0) {
-                        mas2[i][j] = "+";
-                    } else if (mas[i][j] % 7 == 0) {
-                        mas2[i][j] = "-";
-                    } else if (mas[i][j] % 7 == 0 && mas[i][j] % 3 == 0) {
-                        mas2[i][j] = "+";
-                    } else {
-                        mas2[i][j] = "*";
-                    }
-                    System.out.print(mas2[i][j] + " ");
+            if (s > 2) {
+                System.out.println("Введите размерность двумерного массива в виде целого чисел более 2. Вводится число столбцов массива. Этап 2 из 2");
+                if (sc.hasNextInt()) {
+                    c = sc.nextInt();
                 }
-                System.out.println();
             }
+        }
+        while (s < 2 || c < 2);
+        int mas[][] = new int[s][c];
+
+        System.out.println("исходный массив");
+        for (int i = 0; i < mas.length; i++) {
+            for (int j = 0; j < mas[i].length; j++) {
+                mas[i][j] = random.nextInt(101);
+                System.out.print(mas[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("изменение массива");
+        String mas2[][] = new String[s][c];
+        for (int i = 0; i < mas2.length; i++) {
+            for (int j = 0; j < mas2[i].length; j++) {
+                if (mas[i][j] % 3 == 0) {
+                    mas2[i][j] = "+";
+                } else if (mas[i][j] % 7 == 0) {
+                    mas2[i][j] = "-";
+                } else {
+                    mas2[i][j] = "*";
+                }
+                System.out.print(mas2[i][j] + " ");
+            }
+            System.out.println();
         }
     }
+
 
     //  Создать матрицу размера 10 на 10 и заполнить ее случайными целочислеными значениями (тип int) из диапазона от 0 до 10000.
     //   Найти максимум среди сумм трех соседних элементов в строке. Для найденной тройки с максимальной суммой
