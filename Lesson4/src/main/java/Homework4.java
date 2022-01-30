@@ -6,7 +6,7 @@ public class Homework4 {
         //      weekDay();
         // countAmebs();
         //numberRank(-5555555);
-        //zodiacSign(-20, 2);
+        zodiacSign(30, 13);
         //printArray();
         //System.out.println(operation(-7));
         //System.out.println("количество нечетных чисел "+calculateCountOfOddElementsInMatrix(new int[]{1, 9, 10, 3, 7}));
@@ -80,7 +80,7 @@ public class Homework4 {
         if (number == 0) {
             System.out.println("число 0");
         } else {
-            String s = isPositive(number) == true ? "число положительное, количество цифр в числе " + strLength(number) : "число отрицательное, количество цифр в числе " + (strLength(number) - 1);
+            String s = isPositive(number) ? "число положительное, количество цифр в числе " + strLength(number) : "число отрицательное, количество цифр в числе " + (strLength(number) - 1);
             System.out.println(s);
         }
     }
@@ -91,40 +91,73 @@ public class Homework4 {
 
     private static int strLength(int number) {
         String str = Integer.toString(number);
-        int count = str.length();
-        return count;
+        return str.length();
     }
 
     //4) Дано 2 числа, день и месяц рождения. Написать программу, которая определяет знак зодиака человека.
-    private static void zodiacSign(int day, int month) {
-        if (day >= 21 && month == 1 && day > 0 || day <= 19 && month == 2 && day > 0) {
-            System.out.println("Водолей");
-        } else if (day > 19 && month == 2 && day > 0 || day <= 20 && month == 3 && day > 0) {
-            System.out.println("Рыбы");
-        } else if (day > 20 && month == 3 && day > 0 || day <= 20 && month == 4 && day > 0) {
-            System.out.println("Овен");
-        } else if (day > 20 && month == 4 && day > 0 || day <= 21 && month == 5 && day > 0) {
-            System.out.println("Телец");
-        } else if (day > 21 && month == 5 && day > 0 || day <= 21 && month == 6 && day > 0) {
-            System.out.println("Близнецы");
-        } else if (day > 21 && month == 6 && day > 0 || day <= 22 && month == 7 && day > 0) {
-            System.out.println("Рак");
-        } else if (day > 22 && month == 7 && day > 0 || day <= 21 && month == 8 && day > 0) {
-            System.out.println("Лев");
-        } else if (day > 21 && month == 8 && day > 0 || day <= 23 && month == 9 && day > 0) {
-            System.out.println("Дева");
-        } else if (day > 23 && month == 9 && day > 0 || day <= 23 && month == 10 && day > 0) {
-            System.out.println("Весы");
-        } else if (day > 23 && month == 10 && day > 0 || day <= 23 && month == 11 && day > 0) {
-            System.out.println("Скорпион");
-        } else if (day > 23 && month == 11 && day > 0 || day <= 22 && month == 12 && day > 0) {
-            System.out.println("Стрелец");
-        } else if (day > 22 && month == 12 && day > 0 || day <= 20 && month == 1 && day > 0) {
-            System.out.println("Козерог");
-        } else {
-            System.out.println("введена некорректная информация");
-        }
 
+    private static void zodiacSign(int day, int month) {
+        if (day < 0 || month < 0 || month > 12) {
+            System.out.println("введена некорректная информация");
+        } else {
+            if (checkDayMonth(day, month)) {
+                if (day >= 21 && month == 1 && day > 0 || day <= 19 && month == 2 && day > 0) {
+                    System.out.println("Водолей");
+                } else if (day > 19 && month == 2 || day <= 20 && month == 3 && day > 0) {
+                    System.out.println("Рыбы");
+                } else if (day > 20 && month == 3 || day <= 20 && month == 4 && day > 0) {
+                    System.out.println("Овен");
+                } else if (day > 20 && month == 4 || day <= 21 && month == 5 && day > 0) {
+                    System.out.println("Телец");
+                } else if (day > 21 && month == 5 || day <= 21 && month == 6 && day > 0) {
+                    System.out.println("Близнецы");
+                } else if (day > 21 && month == 6 || day <= 22 && month == 7 && day > 0) {
+                    System.out.println("Рак");
+                } else if (day > 22 && month == 7 || day <= 21 && month == 8 && day > 0) {
+                    System.out.println("Лев");
+                } else if (day > 21 && month == 8 || day <= 23 && month == 9 && day > 0) {
+                    System.out.println("Дева");
+                } else if (day > 23 && month == 9 || day <= 23 && month == 10 && day > 0) {
+                    System.out.println("Весы");
+                } else if (day > 23 && month == 10 || day <= 23 && month == 11 && day > 0) {
+                    System.out.println("Скорпион");
+                } else if (day > 23 && month == 11 || day <= 22 && month == 12 && day > 0) {
+                    System.out.println("Стрелец");
+                } else if (day > 22 && month == 12 || day <= 20 && month == 1 && day > 0) {
+                    System.out.println("Козерог");
+                }
+            } else {
+                System.out.println("введена некорректная информация");
+            }
+        }
+    }
+
+    private static boolean checkDayMonth(int day, int month) {
+        boolean check;
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                check = day <= 31;
+                break;
+            case 2:
+                check = day <= 28;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                check = day <= 30;
+                break;
+            default:
+                check = false;
+                break;
+        }
+        return check;
     }
 
     /**
