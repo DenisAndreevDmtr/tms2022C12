@@ -90,33 +90,40 @@ public class Computer {
                 }
             } while (s != 0 && s != 1);
             r = random.nextInt(2);
-            if (r == s) {
-                this.status = 1;
-                System.out.println("Компьютер включился");
+            if (r == s && resourceFullCycles > 0) {
+                status = 1;
             } else {
-                this.status = 2;
-                System.out.println("Компьютер cгорел");
+                status = 2;
             }
 
-        } else if (status == 1) {
-            System.out.println("Компьютер и так уже включен");
-        } else {
-            System.out.println("Компьютер уже сгорел, нельзя включить");
         }
+        checkStatus();
     }
 
     public void offComputer() {
-        if (this.status == 1 && this.resourceFullCycles > 0) {
-            this.resourceFullCycles = this.resourceFullCycles - 1;
-            this.status = 0;
-            System.out.println("Компьютер выключился, ресурс цикла уменьшился на 1 единицу");
-            if (this.resourceFullCycles == 0) {
-                System.out.println("Компьютер сгорел");
-            }
-        } else if (this.status == 2) {
-            System.out.println("Компьютер уже сгорел");
-        } else {
-            System.out.println("Компьютер и так уже выключен");
+        if (status == 1 && resourceFullCycles > 0) {
+            resourceFullCycles = resourceFullCycles - 1;
+            status = 0;
+            System.out.println("Ресурс цикла уменьшился на 1 единицу");
         }
+        checkStatus();
     }
+
+    private void checkStatus() {
+        switch (status) {
+            case 0:
+                System.out.println("Компьютер выключен");
+                break;
+            case 1:
+                System.out.println("Компьютер включен");
+                break;
+            case 2:
+                System.out.println("Компьютер сгорел");
+                break;
+            default:
+                break;
+        }
+
+    }
+
 }
