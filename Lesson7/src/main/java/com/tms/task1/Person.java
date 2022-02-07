@@ -1,4 +1,4 @@
-package Task1;
+package com.tms.task1;
 
 //4) Создать класс Person, который будет содержать следующие поля имя, возраст, пол, адрес(страна, город)
 public class Person {
@@ -6,7 +6,14 @@ public class Person {
     private String name;
     private int age;
     private String sex;
-    private Adress adress;
+    private Address address;
+
+    public Person(String name, int age, String sex, Address address) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.address = address;
+    }
 
     public String getName() {
         return name;
@@ -32,21 +39,12 @@ public class Person {
         this.sex = sex;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
-    }
-
-    public Person(String name, int age, String sex, Adress adress) {
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.adress = adress;
-
-
+    public void setAddress(Address adress) {
+        this.address = adress;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class Person {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
-                ", adress=" + adress.getCountry() + " " + adress.getCity() +
+                ", address=" + address.getCountry() + " " + address.getCity() +
                 '}';
     }
 }

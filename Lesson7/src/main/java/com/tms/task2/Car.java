@@ -1,11 +1,8 @@
-package Task2;
+package com.tms.task2;
 
 public class Car {
 
-    private final String ON = "ON";
-    private final String OFF = "OFF";
     private final int FIX_DISTANSE = 25;
-
 
     private Engine engine;
     private FuelTank fuelTank;
@@ -64,12 +61,12 @@ public class Car {
 
 
     public void changeCarStatus() {
-        if (engine.getStatusEngine() == OFF && fuelTank.checkFuel()) {
+        if (engine.getStatusEngine() == Engine.OFF && fuelTank.checkFuel()) {
             engine.changeStatusEngine();
             System.out.println("Машина поехала");
-        } else if (engine.getStatusEngine() == ON) {
+        } else if (engine.getStatusEngine() == Engine.ON) {
             changeDistance();
-            fuelTank.changeFuel(fuelTank.VOLUME_PER_RUN);
+            fuelTank.reduceFuel(fuelTank.VOLUME_PER_RUN);
             engine.changeStatusEngine();
             System.out.println("Машина остановлена двигатель заглушен");
             System.out.println("проехано " + distance);
