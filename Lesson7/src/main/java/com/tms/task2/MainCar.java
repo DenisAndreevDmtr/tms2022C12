@@ -1,4 +1,4 @@
-package Task2;
+package com.tms.task2;
 
 public class MainCar {
     public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class MainCar {
             }
             System.out.println("нехватка топлива, необходима заправка");
             System.out.println("заправляемся");
-            myFuelTank.changeFuel(25);
+            myFuelTank.increaseFuel(25);
             System.out.println(myCar.toString());
 
         } catch (Exception e) {

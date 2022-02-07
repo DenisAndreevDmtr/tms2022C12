@@ -1,8 +1,8 @@
-package Task2;
+package com.tms.task2;
 
 public class Engine {
-    private final String ON = "ON";
-    private final String OFF = "OFF";
+    public static final String ON = "ON";
+    public static final String OFF = "OFF";
 
     private String name;
     private String type;

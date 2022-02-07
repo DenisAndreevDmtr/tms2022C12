@@ -1,13 +1,11 @@
-package Task2;
+package com.tms.task2;
 
 public class FuelTank {
     private final int MAX_VOLUME = 70;
-    public final int VOLUME_PER_RUN = -20;
-
+    public final int VOLUME_PER_RUN = 20;
 
     private String type;
     private int volume;
-
 
     public FuelTank(String type, int volume) throws Exception {
         if (volume > MAX_VOLUME) {
@@ -45,7 +43,12 @@ public class FuelTank {
         System.out.println(volume);
     }
 
-    public int changeFuel(int change) {
+    public int reduceFuel(int change) {
+        volume = volume - change;
+        return volume;
+    }
+
+    public int increaseFuel(int change) {
         volume = volume + change;
         return volume;
     }

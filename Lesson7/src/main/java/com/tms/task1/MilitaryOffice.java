@@ -1,4 +1,4 @@
-package Task1;
+package com.tms.task1;
 
 //1) Создаем класс военкомат MilitaryOffice
 public class MilitaryOffice {
@@ -24,15 +24,15 @@ public class MilitaryOffice {
         System.out.println("Количество призывников " + count);
     }
 
-    public void printRecruitFromMinsk() {
+    public void printRecruitFromCity(String city) {
         int count = 0;
         for (int i = 0; i < personRegistry.getPersons().length; i++) {
-            if (personRegistry.getPersons()[i].getAdress().getCity().equals("Minsk") && checkAgeAndSex(personRegistry.getPersons()[i], MIN_AGE, MAX_AGE)) {
+            if (personRegistry.getPersons()[i].getAddress().getCity().equals(city) && checkAgeAndSex(personRegistry.getPersons()[i], MIN_AGE, MAX_AGE)) {
                 System.out.println(personRegistry.getPersons()[i].toString());
                 count = count + 1;
             }
         }
-        System.out.println("Количество призывников в Минске " + count);
+        System.out.println("Количество призывников в городе " + city + " " + count);
     }
 
     public void printRecruitFrom25to27() {
@@ -46,16 +46,16 @@ public class MilitaryOffice {
         System.out.println("Количество призывников от 25 до 27 " + count);
     }
 
-    public void printRecruitByNameAlex() {
+    public void printRecruitByName(String name) {
         int count = 0;
         for (int i = 0; i < personRegistry.getPersons().length; i++) {
             if (checkAgeAndSex(personRegistry.getPersons()[i], NEW_MIN_AGE, MAX_AGE) &&
-                    personRegistry.getPersons()[i].getName().equals("Alex")) {
+                    personRegistry.getPersons()[i].getName().equals(name)) {
                 System.out.println(personRegistry.getPersons()[i].toString());
                 count = count + 1;
             }
         }
-        System.out.println("Количество призывников по имени Alex " + count);
+        System.out.println("Количество призывников по имени " + name + " " + count);
     }
 
     private boolean checkAgeAndSex(Person person, int minAge, int maxAge) {

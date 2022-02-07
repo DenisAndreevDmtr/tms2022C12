@@ -1,10 +1,10 @@
-package Task1;
+package com.tms.task1;
 
-public class Adress {
+public class Address {
     private String country;
     private String city;
 
-    public Adress(String country, String city) {
+    public Address(String country, String city) {
         this.country = country;
         this.city = city;
     }
