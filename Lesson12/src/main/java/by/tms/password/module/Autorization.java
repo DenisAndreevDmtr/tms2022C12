@@ -13,26 +13,20 @@ public class Autorization {
         }
     }
 
-    public static boolean checkLogin(String login) throws WrongLoginException {
-        boolean flag = false;
+    public static void checkLogin(String login) throws WrongLoginException {
         if (login.matches("^[a-zA-Z0-9_]{0,20}$")) {
             System.out.println("Логин принят");
-            flag = true;
         } else {
             throw new WrongLoginException("Логин не соответствует критериям");
         }
-        return flag;
     }
 
-    public static boolean checkPassword(String password, String confirmPassword) throws WrongPasswordException {
-        boolean flag = false;
+    public static void checkPassword(String password, String confirmPassword) throws WrongPasswordException {
         if (password.matches("^[a-zA-Z0-9_]{0,20}$") && password.equals(confirmPassword)) {
             System.out.println("Пароль принят");
-            flag = true;
         } else {
             throw new WrongPasswordException("Пароль не соответствуем критериям");
         }
-        return flag;
     }
 
 
