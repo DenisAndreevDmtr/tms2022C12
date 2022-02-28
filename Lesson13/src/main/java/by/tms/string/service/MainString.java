@@ -18,7 +18,7 @@ public class MainString {
 
         });
         System.out.println(stringTask3.getAllPalindromes());
-        StringLine stringTask4 = new StringLine("Привет. На улице весна. Тепло и очень хорошо. Потоп. Хорошего всем настроения и здоровья вашей семье");
+        StringLine stringTask4 = new StringLine("Привет. На улице весна. Тепло и очень хорошо. Потоп. Хорошего всем настроения и здоровья вашей семье.");
         stringTask4.printSententensesFromOneNumberToAnotherNumberWordsAndPalindromes(3, 5);
         StringLine stringTask5 = new StringLine("string");
         System.out.println(stringTask5.getTwoMiddleSymbols());

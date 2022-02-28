@@ -13,17 +13,12 @@ public class Employee implements Report {
 
     @Override
     public void generateReport() {
-        String delimeter = "\\ ";
-        String[] subStr;
-        subStr = fullname.split(delimeter);
-        System.out.println(String.format("|" + String.format("%-15s", subStr[0].substring(0, 1) + "." + subStr[1].substring(0, 1) + "." + subStr[2]) + "|" + "%15s" + "|", String.format("%.2f", salary)));
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "fullname='" + fullname + '\'' +
-                ", salary=" + salary +
-                '}';
+        String delimeter = " ";
+        String[] subStr = fullname.split(delimeter);
+        String name = subStr[0].substring(0, 1) + "." + subStr[1].substring(0, 1) + "." + subStr[2];
+        String formatName = String.format("%-15s", name);
+        String formatSalary = String.format("%15s", String.format("%.2f", salary));
+        System.out.println("|" + formatName + "|" + formatSalary + "|");
     }
 }
+
