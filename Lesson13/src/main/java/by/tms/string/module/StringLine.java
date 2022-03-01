@@ -15,9 +15,7 @@ public class StringLine {
     public String cutStringfromOneCharToAnotherChalWithLastIndex(String start, String end) {
         int firstIndex = stringName.indexOf(start);
         int lastIndex = stringName.lastIndexOf(end);
-        char[] dst = new char[lastIndex + 1 - firstIndex];
-        stringName.getChars(firstIndex, lastIndex + 1, dst, 0);
-        return String.valueOf(dst);
+        return stringName.substring(firstIndex, lastIndex + 1);
     }
 
     //2) Заменить все вхождения символа стоящего в позиции (3) на символ стоящий в позиции 0
@@ -37,7 +35,7 @@ public class StringLine {
     // * Разбиваем текст на предложения. Используя методы класса TextFormatter определяем подходит ли нам предложение.
     // * Если подходит, то выводим на экран.
 
-    public String[] splitStringToSentenses() {
+    private String[] splitStringToSentenses() {
         String delimeter = "\\. ";
         String[] subStr;
         subStr = stringName.split(delimeter);
@@ -50,18 +48,27 @@ public class StringLine {
         String[] subStr;
         for (int i = 0; i < masForPrint.length; i++) {
             subStr = masForPrint[i].split(delimeter);
-            for (int j = 0; j < subStr.length; j++) {
-                if (checkPalindromes(subStr[j])) {
-                    System.out.println(masForPrint[i]);
-                }
-            }
             if (subStr.length >= startNumber && subStr.length <= endNumber) {
+                System.out.println(masForPrint[i]);
+            }
+            if (checkSentenceHasPalindromes(subStr)) {
                 System.out.println(masForPrint[i]);
             }
         }
     }
 
-    public boolean checkPalindromes(String checkString) {
+    private boolean checkSentenceHasPalindromes(String[] mas) {
+        boolean flag = false;
+        for (int j = 0; j < mas.length; j++) {
+            if (checkPalindromes(mas[j])) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+
+    private boolean checkPalindromes(String checkString) {
         boolean flag = false;
         StringBuilder stringBuilder = new StringBuilder(checkString);
         StringBuilder reverseStr = stringBuilder.reverse();
