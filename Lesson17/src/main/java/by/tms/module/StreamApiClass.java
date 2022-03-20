@@ -16,14 +16,15 @@ public class StreamApiClass {
 
     public static void printEvenNumbersAndPrintThem(Set<Integer> set, int numbers) {
         Random random = new Random();
-        for (int i = 0; i < numbers - 1; i++) {
+        for (int i = 0; i < numbers; i++) {
             set.add(random.nextInt(101));
         }
         Stream<Integer> stream = set.stream();
-        List<Integer> list = stream.filter(x -> x % 2 == 0)
-                .collect(Collectors.toList());
-        list.forEach(x -> System.out.println(x));
-        System.out.println("Количество четных чисел в списке " + list.size());
+        long count = stream.filter(x -> x % 2 == 0)
+                .count();
+        System.out.println("число четных чисел составило " + count);
+        Stream<Integer> stream1 = set.stream();
+        stream1.filter(x -> x % 2 == 0).forEach(x -> System.out.println(x));
     }
 
     public static void printListObjectWithCapitalLetter(List<String> list) {
@@ -44,14 +45,10 @@ public class StreamApiClass {
     }
 
     public static void printNumberOfpeopleThatSurnnameFirstLetterStart(List<Person> list) {
-        Stream<Person> stream = list.stream();
-        List<String> surnamesFirstLetter = stream.map(x -> x.getSurname().substring(0, 1)).collect(Collectors.toList());
-        HashMap<String, Integer> unicFirstLetters = new HashMap<>();
-        for (int i = 0; i < surnamesFirstLetter.size(); i++) {
-            unicFirstLetters.put(surnamesFirstLetter.get(i), unicFirstLetters.getOrDefault(surnamesFirstLetter.get(i), 0) + 1);
-        }
-        for (Map.Entry entry : unicFirstLetters.entrySet()) {
-            System.out.println("Буква " + entry + " сотрудника");
+        Map<String, Long> map = list.stream().map(Person::getSurname)
+                .collect(Collectors.groupingBy(x -> x.substring(0, 1), Collectors.counting()));
+        for (Map.Entry<String, Long> str : map.entrySet()) {
+            System.out.println("На букву " + str.getKey() + " - " + str.getValue() + " фамилии");
         }
     }
 }
