@@ -3,8 +3,10 @@ package by.tms.service;
 import by.tms.module.Car;
 import by.tms.module.Person;
 import by.tms.module.StreamApiClass;
+import by.tms.module.Student;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MainStreamApi {
     public static void main(String[] args) {
@@ -43,5 +45,16 @@ public class MainStreamApi {
             System.out.println(StreamApiClass.getOptionalStringOfSurnamesThatStartFromLetter(persons, "Д").get());
         }
         StreamApiClass.printNumberOfpeopleThatSurnnameFirstLetterStart(persons);
+
+        List<Student> students = Arrays.asList(
+                new Student("Иван", 145221, 3, Arrays.asList(4, 5, 6, 6, 5)),
+                new Student("Павел", 145221, 1, Arrays.asList(9, 8, 6, 6, 8)),
+                new Student("Петр", 145222, 2, Arrays.asList(3, 3, 2, 2, 2)),
+                new Student("Василий", 145223, 4, Arrays.asList(9, 5, 4, 3, 4)),
+                new Student("Николай", 145225, 3, Arrays.asList(2, 1, 3, 2, 2)));
+        List<Student> updateStudents = students.stream().filter(s -> s.getMarks().stream().mapToDouble(x -> x).average().orElse(0.0) >= 3).peek(y -> y.setNumberCourse(y.getNumberCourse() + 1)).collect(Collectors.toList());
+        updateStudents.forEach(j -> System.out.println(j));
+
+
     }
 }
