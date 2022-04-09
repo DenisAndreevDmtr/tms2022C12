@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CRUDUtilsAdditionalTask {
     private static final String GET_ALL_STUDENTS_QUERY = "SELECT * FROM students";
-    private static final String INSERT_STUDENTS_QUERY = "INSERT INTO students (name, surname, course, idCity) VALUES (?, ?, ?,?)";
+    private static final String INSERT_STUDENTS_QUERY = "INSERT INTO students (name, surname, course, idCity) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_STUDENTS_QUERY = "UPDATE students SET course=? WHERE id=?";
     private static final String DELETE_STUDENTS_QUERY = "DELETE FROM students WHERE id=?";
     private static final String GET_ALL_STUDENTS_QUERY_WITH_CITIESNAME = "SELECT students_db.students.name, students_db.cities.name" +
@@ -153,6 +153,4 @@ public class CRUDUtilsAdditionalTask {
         }
         return cities;
     }
-
-
 }

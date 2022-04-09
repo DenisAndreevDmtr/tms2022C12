@@ -23,7 +23,4 @@ public class Product {
         this.amount = amount;
         this.isAvailable = isAvailable;
     }
-
-    public Product(String yan, String yanovich, int i) {
-    }
 }

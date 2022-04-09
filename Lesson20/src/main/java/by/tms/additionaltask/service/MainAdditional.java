@@ -8,7 +8,7 @@ import by.tms.additionaltask.utils.CRUDUtilsAdditionalTask;
 public class MainAdditional {
     public static void main(String[] args) {
         System.out.println("Вывод всех студентов");
-        CRUDUtilsAdditionalTask.getAllStudents().forEach(x -> System.out.println(x));
+        CRUDUtilsAdditionalTask.getAllStudents().forEach(System.out::println);
         Student studentNew = new Student("Yan", "Yanovich", 3, 2);
         System.out.println("Выполнение добавления студентов");
         CRUDUtilsAdditionalTask.addStudent(studentNew).forEach(System.out::println);
