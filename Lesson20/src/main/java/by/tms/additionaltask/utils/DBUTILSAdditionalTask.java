@@ -18,5 +18,4 @@ public class DBUTILSAdditionalTask {
         }
         return connection;
     }
-
 }

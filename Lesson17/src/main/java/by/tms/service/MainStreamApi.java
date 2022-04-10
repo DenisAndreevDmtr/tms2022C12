@@ -1,9 +1,9 @@
 package by.tms.service;
 
-import by.tms.module.Car;
-import by.tms.module.Person;
-import by.tms.module.StreamApiClass;
-import by.tms.module.Student;
+import by.tms.utils.Car;
+import by.tms.utils.Person;
+import by.tms.utils.StreamApiClass;
+import by.tms.utils.Student;
 
 import java.util.*;
 import java.util.stream.Collectors;

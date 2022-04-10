@@ -1,6 +1,6 @@
 package by.tms.service;
 
-import by.tms.module.TextFormatter;
+import by.tms.utils.TextFormatter;
 
 import java.io.File;
 

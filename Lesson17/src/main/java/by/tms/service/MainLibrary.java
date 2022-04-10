@@ -1,9 +1,9 @@
 package by.tms.service;
 
-import by.tms.module.Book;
-import by.tms.module.EmailAdress;
-import by.tms.module.Library;
-import by.tms.module.Reader;
+import by.tms.utils.Book;
+import by.tms.utils.EmailAdress;
+import by.tms.utils.Library;
+import by.tms.utils.Reader;
 
 import java.util.Arrays;
 import java.util.List;

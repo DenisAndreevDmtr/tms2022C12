@@ -1,6 +1,6 @@
 package by.tms.service;
 
-import by.tms.module.StringLine;
+import by.tms.utils.StringLine;
 
 public class MainString {
     public static void main(String[] args) {

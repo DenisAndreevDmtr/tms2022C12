@@ -1,7 +1,7 @@
 package by.tms.service;
 
-import by.tms.module.Application;
-import by.tms.module.Supermarket;
+import by.tms.utils.Application;
+import by.tms.utils.Supermarket;
 
 public class MainSupermarket {
     public static void main(String[] args) {

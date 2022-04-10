@@ -22,5 +22,4 @@ public class DBUtilsTask1 {
         }
         return connection;
     }
-
 }

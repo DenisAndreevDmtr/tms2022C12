@@ -82,7 +82,7 @@ public class User {
     @Deprecated
     public String increaseAge(int ageIncrease) {
         if (ageIncrease >= 1) {
-            age = age + ageIncrease;
+            age += ageIncrease;
         } else {
             System.out.println("введена некорректная информация");
         }

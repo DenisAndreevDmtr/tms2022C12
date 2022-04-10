@@ -1,7 +1,7 @@
 package by.tms.service;
 
-import by.tms.module.Number;
-import by.tms.module.*;
+import by.tms.utils.Number;
+import by.tms.utils.*;
 
 public class MainGenerics {
     public static void main(String[] args) {

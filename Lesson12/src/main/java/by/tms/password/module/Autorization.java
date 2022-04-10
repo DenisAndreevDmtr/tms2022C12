@@ -14,7 +14,7 @@ public class Autorization {
     }
 
     public static void checkLogin(String login) throws WrongLoginException {
-        if (login.matches("^[a-zA-Z0-9_]{0,20}$")) {
+        if (checkSymbols(login)) {
             System.out.println("Логин принят");
         } else {
             throw new WrongLoginException("Логин не соответствует критериям");
@@ -22,11 +22,19 @@ public class Autorization {
     }
 
     public static void checkPassword(String password, String confirmPassword) throws WrongPasswordException {
-        if (password.matches("^[a-zA-Z0-9_]{0,20}$") && password.equals(confirmPassword)) {
+        if (checkSymbols(password) && password.equals(confirmPassword)) {
             System.out.println("Пароль принят");
         } else {
             throw new WrongPasswordException("Пароль не соответствуем критериям");
         }
+    }
+
+    public static boolean checkSymbols(String line) {
+        boolean flag = false;
+        if (line.matches("^[a-zA-Z0-9_]{0,20}$")) {
+            flag = true;
+        }
+        return flag;
     }
 
 
