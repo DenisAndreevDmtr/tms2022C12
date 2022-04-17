@@ -20,9 +20,9 @@ public class CalculatorServlet extends HttpServlet {
 
         @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            double number1 = Double.valueOf(req.getParameter("number1"));
-            double number2 = Double.valueOf(req.getParameter("number2"));
-            double result = 0;
+            double number1 = Double.parseDouble(req.getParameter("number1"));
+            double number2 = Double.parseDouble(req.getParameter("number2"));
+            double result;
             String operator = req.getParameter("operator");
             String operation = "";
             switch (operator) {

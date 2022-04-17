@@ -1,67 +1,62 @@
 package by.tms.service;
 
 import by.tms.module.User;
+import lombok.SneakyThrows;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.Optional;
 
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+    @SneakyThrows
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.html");
-        requestDispatcher.forward(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        RequestDispatcher rd;
+        User user = (User) req.getSession().getAttribute("user");
+        if (Optional.ofNullable(user).isEmpty()) {
+            rd = req.getRequestDispatcher("WEB-INF/login.html");
+        } else {
+            rd = req.getRequestDispatcher("WEB-INF/redirect.jsp");
+        }
+        rd.forward(req, resp);
     }
 
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//        System.out.println("session" + req.getSession().getAttribute("login"));
-//
-//        User user = new User();
-//        String login = req.getParameter("login");
-//        String password = req.getParameter("password");
-//
-//        if (!user.getLogin().equals(login) || !user.getPassword().equals(password)) {
-//            resp.getWriter().write("Incorrect password or login");
-//        } else {
-//            ServletContext ctx = req.getSession().getServletContext();
-//            ctx.setAttribute("login", login);
-//            ctx.setAttribute("password", password);
-//            req.getRequestDispatcher("/redirect.jsp").forward(req, resp);
-//
-//        }
-//    }
-
+    @SneakyThrows
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User();
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        if (!user.getLogin().equals(login) || !user.getPassword().equals(password)) {
-            resp.getWriter().write("Incorrect password or login");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        User user = (User) req.getSession().getAttribute("user");
+        RequestDispatcher rd;
+        if (Optional.ofNullable(user).isEmpty()) {
+            rd = req.getRequestDispatcher(checkUser(new User(), req));
         } else {
-            RequestDispatcher rd = req.getRequestDispatcher(checkUser(user, req));
-            rd.forward(req, resp);
+            rd = req.getRequestDispatcher(checkUser(user, req));
         }
+        rd.forward(req, resp);
     }
 
     private String checkUser(User user, HttpServletRequest request) {
-        if (user != null &&
-                request.getParameter("login").equals(user.getLogin()) &&
-                request.getParameter("password").equals(user.getPassword())) {
-            request.getSession().setAttribute("login", request.getParameter("login"));
+        String login = request.getParameter("login");
+        String pass = request.getParameter("password");
 
-            return "redirect.jsp";
+        if (user != null &&
+                !validateParamNotNull(login) &&
+                !validateParamNotNull(pass) &&
+                login.equals(user.getLogin()) &&
+                pass.equals(user.getPassword())) {
+            request.getSession().setAttribute("user", user);
+            return "WEB-INF/redirect.jsp";
         }
-        return "login.html";
+        return "WEB-INF/login.html";
     }
 
-
+    private boolean validateParamNotNull(String param) {
+        return Optional.ofNullable(param).isEmpty();
+    }
 }
+
+
