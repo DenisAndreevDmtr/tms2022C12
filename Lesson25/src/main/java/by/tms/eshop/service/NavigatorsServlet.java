@@ -27,8 +27,4 @@ public class NavigatorsServlet extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("navigators.jsp");
         rd.forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    }
 }

@@ -27,8 +27,4 @@ public class CarsServlet extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("cars.jsp");
         rd.forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    }
 }

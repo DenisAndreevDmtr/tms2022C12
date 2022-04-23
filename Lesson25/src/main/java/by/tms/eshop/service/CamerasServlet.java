@@ -26,8 +26,4 @@ public class CamerasServlet extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("cameras.jsp");
         rd.forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    }
 }

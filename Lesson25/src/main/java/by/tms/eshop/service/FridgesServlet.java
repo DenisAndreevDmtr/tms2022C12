@@ -27,9 +27,4 @@ public class FridgesServlet extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("fridges.jsp");
         rd.forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
 }
