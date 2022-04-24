@@ -1,0 +1,34 @@
+.row {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.btn-img {
+    width: 70px;
+    height: 70px;
+}
+
+.btn-class {
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    background: white;
+    border-radius: 10px;
+    border-color: lightgrey;
+}
+
+.add-img {
+    width: 40px;
+    height: 40px;
+}
