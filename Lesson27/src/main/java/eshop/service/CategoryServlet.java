@@ -1,8 +1,9 @@
 package eshop.service;
 
-import eshop.model.Car;
 import eshop.model.CardStorage;
+import eshop.model.CategoriesStorage;
 import eshop.model.Product;
+import eshop.model.ProductsStorage;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,22 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@WebServlet("/cars")
-public class CarsServlet extends HttpServlet {
+@WebServlet("/category")
+public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<Car> cars = new ArrayList<>();
-        Car car1 = new Car("BMW", "car1.jpg", "Good car", new BigDecimal(2300));
-        Car car2 = new Car("Nissan", "car2.jpg", "Very good car", new BigDecimal(2450));
-        cars.add(car1);
-        cars.add(car2);
-        req.setAttribute("cars", cars);
-        RequestDispatcher rd = req.getRequestDispatcher("cars.jsp");
-        rd.forward(req, resp);
+        int id = Integer.parseInt(req.getParameter("id"));
+        List<Product> products = ProductsStorage.getProducts().stream().filter(x -> x.getIdCategory() == id).collect(Collectors.toList());
+        req.setAttribute("namecategory", CategoriesStorage.getCategoryNameById(id));
+        req.setAttribute("categories", products);
+        req.getServletContext().getRequestDispatcher("/category.jsp").forward(req, resp);
     }
 
     @Override
@@ -46,5 +44,7 @@ public class CarsServlet extends HttpServlet {
         session.setAttribute("products", products);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("usercard.jsp");
         requestDispatcher.forward(req, resp);
+
+
     }
 }

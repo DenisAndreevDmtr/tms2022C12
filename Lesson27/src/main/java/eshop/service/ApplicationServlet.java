@@ -2,6 +2,7 @@ package eshop.service;
 
 
 import eshop.exceptions.RequestParamNullException;
+import eshop.model.CategoriesStorage;
 import eshop.model.Category;
 import eshop.model.User;
 
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static eshop.utils.HttpRequestParamValidator.validateParamNotNull;
@@ -57,26 +57,11 @@ public class ApplicationServlet extends HttpServlet {
                 && request.getParameter("username").equals(ADMIN_LOGIN)
                 && request.getParameter("password").equals(ADMIN_PASSWORD)) {
             request.getSession().setAttribute("username", user);
-
-            List<Category> categories = new ArrayList<>();
-
-            Category mobilePhones = new Category("Mobile phones", "mobile.jpg", "/mobiles");
-            Category laptops = new Category("Laptops", "laptop.jpg", "/laptops");
-            Category jpsNavigators = new Category("GPS Navigators", "jps_nav.jpg", "/navigators");
-            Category fridges = new Category("Fridges", "fridge.jpg", "/fridges");
-            Category car = new Category("Cars", "car.jpg", "/cars");
-            Category camera = new Category("Cameras", "camera.jpg", "/cameras");
-            categories.add(mobilePhones);
-            categories.add(laptops);
-            categories.add(jpsNavigators);
-            categories.add(fridges);
-            categories.add(car);
-            categories.add(camera);
+            List<Category> categories = CategoriesStorage.getCategories();
             HttpSession session = request.getSession();
             session.setAttribute("categories", categories);
             request.setAttribute("categories", categories);
-
-            return "home.jsp";
+            return "devices.jsp";
         } else {
             return "signin.jsp";
         }
