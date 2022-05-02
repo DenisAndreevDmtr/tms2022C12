@@ -3,6 +3,7 @@ package eshop.model;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductsStorage {
     private static List<Product> products = Arrays.asList(
@@ -22,5 +23,9 @@ public class ProductsStorage {
 
     public static List<Product> getProducts() {
         return products;
+    }
+
+    public static List<Product> getProductsByIdCategory(int id) {
+        return products.stream().filter(x -> x.getIdCategory() == id).collect(Collectors.toList());
     }
 }

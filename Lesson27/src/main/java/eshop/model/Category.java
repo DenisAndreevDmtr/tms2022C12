@@ -13,11 +13,10 @@ public class Category {
     private String imageName;
     private String servletName;
 
-    public Category(int id, String name, String imageName, String servletName) {
+    public Category(int id, String name, String imageName) {
         this.id = id;
         this.name = name;
         this.imageName = imageName;
-        this.servletName = servletName;
     }
 
     @Override

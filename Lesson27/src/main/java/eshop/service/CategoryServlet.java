@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @WebServlet("/category")
 public class CategoryServlet extends HttpServlet {
@@ -23,9 +22,9 @@ public class CategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        List<Product> products = ProductsStorage.getProducts().stream().filter(x -> x.getIdCategory() == id).collect(Collectors.toList());
+        List<Product> products = ProductsStorage.getProductsByIdCategory(id);
         req.setAttribute("namecategory", CategoriesStorage.getCategoryNameById(id));
-        req.setAttribute("categories", products);
+        req.setAttribute("products", products);
         req.getServletContext().getRequestDispatcher("/category.jsp").forward(req, resp);
     }
 

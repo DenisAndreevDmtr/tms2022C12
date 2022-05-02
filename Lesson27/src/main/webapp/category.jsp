@@ -19,28 +19,28 @@
 
 <div class="container-buttons">
     <button class="btn-class">
-        <img class="btn-img" onclick="location.href='usercard.jsp' " src="images/pack.png" alt="pack">
+        <img class="btn-img" onclick="location.href='${contextPath}/usercard' " src="images/pack.png" alt="pack">
     </button>
     <button class="btn-class">
-        <img class="btn-img" onclick="location.href='devices.jsp' " src="images/home.jpg" alt="home">
+        <img class="btn-img" onclick="location.href='${contextPath}/devices' " src="images/home.jpg" alt="home">
     </button>
 </div>
 
 <div class="container-fluid">
-    <c:if test="${not empty categories}">
+    <c:if test="${not empty products}">
         <div class="row">
-            <c:forEach items="${categories}" var="category">
+            <c:forEach items="${products}" var="product">
                 <form method="post" , action="/category">
                     <div class="card w-25 m-1" type="category">
                         <div class="card-body">
                             <img class="card-img" style="width:45%;height:100%"
-                                 src="images/${category.getImageName()}" alt="Category image">
+                                 src="images/${product.getImageName()}" alt="Category image">
                             <div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><b>Name:</b> <a>${category.getName()}</a></li>
-                                    <li class="list-group-item"><b>Description:</b> <a>${category.getDescription()}</a>
+                                    <li class="list-group-item"><b>Name:</b> <a>${product.getName()}</a></li>
+                                    <li class="list-group-item"><b>Description:</b> <a>${product.getDescription()}</a>
                                     </li>
-                                    <li class="list-group-item"><b>Price:</b> <a>${category.getPrice()}</a></li>
+                                    <li class="list-group-item"><b>Price:</b> <a>${product.getPrice()}</a></li>
                                 </ul>
                                 <div class="container-buttons">
                                     <button class="btn-class" type="submit">
@@ -51,10 +51,10 @@
                         </div>
                     </div>
                     <div class="info-product-price">
-                        <input type="hidden" name="picture" value="${category.getImageName()}"/>
-                        <input type="hidden" name="name" value="${category.getName()}"/>
-                        <input type="hidden" name="description" value="${category.getDescription()}"/>
-                        <input type="hidden" name="price" value="${category.getPrice()}"/>
+                        <input type="hidden" name="picture" value="${product.getImageName()}"/>
+                        <input type="hidden" name="name" value="${product.getName()}"/>
+                        <input type="hidden" name="description" value="${product.getDescription()}"/>
+                        <input type="hidden" name="price" value="${product.getPrice()}"/>
                     </div>
                 </form>
             </c:forEach>

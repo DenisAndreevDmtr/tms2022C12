@@ -26,7 +26,7 @@
 
 <div class="container-buttons">
     <button class="btn-class">
-        <img class="btn-img" onclick="location.href='devices.jsp' " src="images/home.jpg" alt="home">
+        <img class="btn-img" onclick="location.href='${contextPath}/devices' " src="images/home.jpg" alt="home">
     </button>
 </div>
 <div class="container-fluid center">
