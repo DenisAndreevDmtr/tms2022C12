@@ -54,7 +54,7 @@ public class ApplicationServlet extends HttpServlet {
         User admin = new User("admin", "admin");
         users.add(admin);
         UserStorage.setUsers(users);
-        if (UserStorage.CheckUser(request.getParameter("username"), request.getParameter("password"))) {
+        if (UserStorage.сheckUser(request.getParameter("username"), request.getParameter("password"))) {
             request.getSession().setAttribute("username", user);
             List<Category> categories = CategoriesStorage.getCategories();
             HttpSession session = request.getSession();

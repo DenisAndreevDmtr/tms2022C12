@@ -16,7 +16,7 @@ public class UserStorage {
         UserStorage.users = users;
     }
 
-    public static boolean CheckUser(String login, String password) {
+    public static boolean сheckUser(String login, String password) {
         for (User u : users) {
             if (u.getLogin().equals(login) && u.getPassword().equals(password)) {
                 return true;
