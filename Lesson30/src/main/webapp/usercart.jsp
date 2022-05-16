@@ -69,13 +69,10 @@
     </c:if>
 </div>
 <div>
-    <%
-        //        List<Product> products = Cart.getProductsInCart();
-//        BigDecimal result = products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-    %>
+
     <div class="total-sum center">
         <b>Total sum ${totalsum}</b>
-        <%--        <b>Total sum <%out.println(result);%></b>--%>
+
     </div>
 </div>
 </div>
