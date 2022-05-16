@@ -1,6 +1,6 @@
 package eshop.service;
 
-import eshop.model.CartStorage;
+import eshop.model.Cart;
 import eshop.model.CategoriesStorage;
 import eshop.model.Product;
 import eshop.model.ProductsStorage;
@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,14 +37,21 @@ public class CategoryServlet extends HttpServlet {
         String description = req.getParameter("description");
         int prc = Integer.parseInt(req.getParameter("price"));
         BigDecimal price = BigDecimal.valueOf(prc);
-        int idcategory = Integer.parseInt(req.getParameter("idcategory"));
-        Product product = new Product(name, picture, description, price, idcategory);
-        List<Product> products = CartStorage.getProductsInCart();
-        products.add(product);
-        CartStorage.setProductsInCart(products);
+        int idCategory = Integer.parseInt(req.getParameter("idcategory"));
+        Product product = new Product(name, picture, description, price, idCategory);
         HttpSession session = req.getSession();
-        session.setAttribute("products", products);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("usercart.jsp");
+        Cart cart = (Cart) session.getAttribute("cart");
+        List<Product> products = cart.getProductsInCart();
+        if (products == null) {
+            List<Product> productList = new ArrayList<>();
+            products = productList;
+        }
+        products.add(product);
+        cart.setProductsInCart(products);
+        BigDecimal totalSum = cart.getProductsInCart().stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        session.setAttribute("cart", cart);
+        req.setAttribute("totalsum", totalSum);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/usercart.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

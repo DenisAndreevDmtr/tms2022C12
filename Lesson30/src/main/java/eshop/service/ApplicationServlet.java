@@ -2,6 +2,7 @@ package eshop.service;
 
 
 import eshop.exceptions.RequestParamNullException;
+import eshop.model.Cart;
 import eshop.model.CategoriesStorage;
 import eshop.model.Category;
 import eshop.model.User;
@@ -67,6 +68,8 @@ public class ApplicationServlet extends HttpServlet {
             session.setAttribute("usersurname", userThatHasLoggedIn.getSurname());
             session.setAttribute("userdateborn", userThatHasLoggedIn.getDateBorn());
             session.setAttribute("useremail", userThatHasLoggedIn.getEMail());
+            Cart cart = new Cart();
+            session.setAttribute("cart", cart);
             return "devices.jsp";
         } else {
             return "signin.jsp";

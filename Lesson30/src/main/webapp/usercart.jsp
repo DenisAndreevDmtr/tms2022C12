@@ -1,14 +1,13 @@
 <%@ page import="eshop.model.Product" %>
 <%@ page import="java.util.List" %>
-<%@ page import="eshop.model.CartStorage" %>
+<%@ page import="eshop.model.Cart" %>
 <%@ page import="java.math.BigDecimal" %>
+<%@ page import="eshop.model.Cart" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<%
-    int sum = 0;
-%>
+
 <html lang="en">
 <head>
     <title>UserCard</title>
@@ -34,20 +33,20 @@
     </button>
 </div>
 <div class="container-fluid center">
-    <c:if test="${not empty products}">
+    <c:if test="${not empty cart}">
         <div class="row">
-            <c:forEach items="${products}" var="products">
+            <c:forEach items="${cart.getProductsInCart()}" var="cartitem">
                 <form method="post" , action="/usercart">
-                    <div class="card" type="products">
+                    <div class="card" type="cart">
                         <div class="card-body">
                             <img class="card-img"
-                                 src="images/${products.getImageName()}" alt="Product image">
+                                 src="images/${cartitem.getImageName()}" alt="Product image">
                             <div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><b>Name:</b> <a>${products.getName()}</a></li>
-                                    <li class="list-group-item"><b>Description:</b> <a>${products.getDescription()}</a>
+                                    <li class="list-group-item"><b>Name:</b> <a>${cartitem.getName()}</a></li>
+                                    <li class="list-group-item"><b>Description:</b> <a>${cartitem.getDescription()}</a>
                                     </li>
-                                    <li class="list-group-item"><b>Price:</b> <a>${products.getPrice()}</a></li>
+                                    <li class="list-group-item"><b>Price:</b> <a>${cartitem.getPrice()}</a></li>
                                 </ul>
                                 <div class="container-buttons">
                                     <button class="btn-class" type="submit">
@@ -58,11 +57,11 @@
                         </div>
                     </div>
                     <div class="info-product-price">
-                        <input type="hidden" name="picture" value="${products.getImageName()}"/>
-                        <input type="hidden" name="name" value="${products.getName()}"/>
-                        <input type="hidden" name="description" value="${products.getDescription()}"/>
-                        <input type="hidden" name="price" value="${products.getPrice()}"/>
-                        <input type="hidden" name="idcategory" value="${products.getId()}"/>
+                        <input type="hidden" name="picture" value="${cartitem.getImageName()}"/>
+                        <input type="hidden" name="name" value="${cartitem.getName()}"/>
+                        <input type="hidden" name="description" value="${cartitem.getDescription()}"/>
+                        <input type="hidden" name="price" value="${cartitem.getPrice()}"/>
+                        <input type="hidden" name="idcategory" value="${cartitem.getId()}"/>
                     </div>
                 </form>
             </c:forEach>
@@ -71,11 +70,12 @@
 </div>
 <div>
     <%
-        List<Product> products = CartStorage.getProductsInCart();
-        BigDecimal result = products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        //        List<Product> products = Cart.getProductsInCart();
+//        BigDecimal result = products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
     %>
     <div class="total-sum center">
-        <b>Total sum <%out.println(result);%></b>
+        <b>Total sum ${totalsum}</b>
+        <%--        <b>Total sum <%out.println(result);%></b>--%>
     </div>
 </div>
 </div>
