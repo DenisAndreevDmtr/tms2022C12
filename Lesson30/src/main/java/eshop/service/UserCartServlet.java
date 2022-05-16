@@ -42,6 +42,8 @@ public class UserCartServlet extends HttpServlet {
         products.remove(product);
         cart.setProductsInCart(products);
         session.setAttribute("cart", cart);
+        BigDecimal totalSum = cart.getProductsInCart().stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        req.setAttribute("totalsum", totalSum);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("usercart.jsp");
         requestDispatcher.forward(req, resp);
     }
