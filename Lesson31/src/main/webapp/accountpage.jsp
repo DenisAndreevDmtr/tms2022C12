@@ -1,0 +1,82 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cars</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="mystyles.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<h2>User info</h2>
+
+
+<div class="container-buttons">
+    <button class="btn-class">
+        <img class="btn-img" onclick="location.href='${contextPath}/usercart' " src="images/pack.png" alt="pack">
+    </button>
+    <button class="btn-class">
+        <img class="btn-img" onclick="location.href='${contextPath}/devices' " src="images/home.jpg" alt="home">
+    </button>
+</div>
+
+<div class="container-fluid">
+    <div class="column">
+        <div class="card w-25 m-1">
+            <div class="card-body">
+                <img class="card-img" style="width:20%;height:20%"
+                     src="images/userinfo.png" alt="Userimage">
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>User login:</b> <a>${userlogin}</a></li>
+                        <li class="list-group-item"><b>User password:</b> <a>${userpassword}</a></li>
+                        <li class="list-group-item"><b>User name:</b> <a>${username}</a></li>
+                        <li class="list-group-item"><b>User surname:</b> <a>${usersurname}</a></li>
+                        <li class="list-group-item"><b>User dateborn:</b> <a>${userdateborn}</a></li>
+                        <li class="list-group-item"><b>user E-mail:</b> <a>${useremail}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-orders">
+    <div class="container-orders-title">
+        <p>History</p>
+    </div>
+    <c:if test="${not empty orders}">
+        <c:forEach items="${orders}" var="order">
+            <div class="order">
+                <div class="order-info">
+                    <p>ID number order:<b> ${order.getIdOrder()}</b></p>
+                    <p> Sum order:<b> ${order.getPriceOrder()}</b></p>
+                    <p> Date order:<b> ${order.getDate()}</b></p>
+                </div>
+                <div class="row order-list">
+                    <c:forEach items="${order.getProductsInOrder()}" var="orderdetails">
+                        <div class="card-body order-product">
+                            <img class="card-img" style="width:50px;height:50px"
+                                 src="images/${orderdetails.getImageName()}" alt="Product image"/>
+                            <ul class="list-group order-product-info">
+                                <li class="list-group-item"><b>Name:</b> <a>${orderdetails.getName()}</a></li>
+                                <li class="list-group-item"><b>Description:</b> <a>${orderdetails.getDescription()}</a>
+                                </li>
+                                <li class="list-group-item"><b>Price:</b> <a>${orderdetails.getPrice()}</a></li>
+                            </ul>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </c:forEach>
+    </c:if>
+</div>
+</body>
+</html>
