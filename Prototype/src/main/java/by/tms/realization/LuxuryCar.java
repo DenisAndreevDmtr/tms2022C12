@@ -7,8 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-
-
 public class LuxuryCar extends Car {
     private boolean cabriolet;
 

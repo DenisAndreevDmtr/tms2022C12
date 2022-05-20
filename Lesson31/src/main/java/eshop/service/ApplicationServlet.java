@@ -59,16 +59,10 @@ public class ApplicationServlet extends HttpServlet {
             request.getSession().setAttribute("username", user);
             List<Category> categories = CategoriesStorage.getCategories();
             HttpSession session = request.getSession();
-            User userThatHasLoggedIn = UserStorage.returnUser(request.getParameter("username"), request.getParameter("password"));
+            User loggedInUser = UserStorage.returnUser(request.getParameter("username"), request.getParameter("password"));
             session.setAttribute("categories", categories);
             request.setAttribute("categories", categories);
-            session.setAttribute("userlogin", userThatHasLoggedIn.getLogin());
-            session.setAttribute("userpassword", userThatHasLoggedIn.getPassword());
-            session.setAttribute("username", userThatHasLoggedIn.getName());
-            session.setAttribute("usersurname", userThatHasLoggedIn.getSurname());
-            session.setAttribute("userdateborn", userThatHasLoggedIn.getDateBorn());
-            session.setAttribute("useremail", userThatHasLoggedIn.getEMail());
-            session.setAttribute("userid", userThatHasLoggedIn.getIdUser());
+            session.setAttribute("loggedInUser", loggedInUser);
             Cart cart = new Cart();
             session.setAttribute("cart", cart);
             return "devices.jsp";

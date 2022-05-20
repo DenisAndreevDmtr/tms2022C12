@@ -27,7 +27,7 @@
         <img class="btn-img" onclick="location.href='${contextPath}/devices' " src="images/home.jpg" alt="home">
     </button>
     <button class="btn-class">
-        <img class="btn-img" onclick="location.href='${contextPath}/accountpage' " src="images/usericon.png"
+        <img class="btn-img" onclick="location.href='${contextPath}/profile' " src="images/usericon.png"
              alt="usericon">
     </button>
 </div>

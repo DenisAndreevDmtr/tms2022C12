@@ -2,6 +2,7 @@ package eshop.service;
 
 import eshop.model.Order;
 import eshop.model.OrderStorage;
+import eshop.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,23 +15,21 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/accountpage")
-public class AccountPageServlet extends HttpServlet {
+@WebServlet("/profile")
+public class UserProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        req.setAttribute("userlogin", session.getAttribute("userlogin"));
-        req.setAttribute("userpassword", session.getAttribute("userpassword"));
-        req.setAttribute("username", session.getAttribute("username"));
-        req.setAttribute("usersurname", session.getAttribute("usersurname"));
-        req.setAttribute("userdateborn", session.getAttribute("userdateborn"));
-        req.setAttribute("useremail", session.getAttribute("useremail"));
-        int idUser = (Integer) session.getAttribute("userid");
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        System.out.println(loggedInUser.getLogin());
+        req.setAttribute("loggedInUser", loggedInUser);
+        int idUser = loggedInUser.getIdUser();
         List<Order> orderStorage = OrderStorage.getOrderStorage();
         List<Order> orders = orderStorage.stream().filter(x -> x.getIdUser() == idUser).collect(Collectors.toList());
+        System.out.println(orders.size());
         req.setAttribute("orders", orders);
-        RequestDispatcher rd = req.getRequestDispatcher("accountpage.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("profile.jsp");
         rd.forward(req, resp);
     }
 }

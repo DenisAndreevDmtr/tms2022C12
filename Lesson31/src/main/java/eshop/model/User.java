@@ -1,12 +1,11 @@
 package eshop.model;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Getter
+
 @Setter
 @EqualsAndHashCode
 public class User {
@@ -35,6 +34,38 @@ public class User {
         this.login = login;
         this.password = password;
         this.idUser = idCounter++;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public LocalDate getDateBorn() {
+        return dateBorn;
+    }
+
+    public String geteMail() {
+        return eMail;
     }
 }
 

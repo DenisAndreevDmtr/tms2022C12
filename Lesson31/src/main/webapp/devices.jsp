@@ -22,7 +22,7 @@
         <img class="btn-img" onclick="location.href='${contextPath}/usercart' " src="images/pack.png" alt="pack">
     </button>
     <button class="btn-class">
-        <img class="btn-img" onclick="location.href='${contextPath}/accountpage' " src="images/usericon.png"
+        <img class="btn-img" onclick="location.href='${contextPath}/profile' " src="images/usericon.png"
              alt="usericon">
     </button>
 </div>

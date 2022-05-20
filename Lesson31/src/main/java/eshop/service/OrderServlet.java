@@ -5,6 +5,7 @@ import eshop.model.Cart;
 import eshop.model.Order;
 import eshop.model.OrderStorage;
 import eshop.model.Product;
+import eshop.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,8 +30,8 @@ public class OrderServlet extends HttpServlet {
         List<Product> products = cart.getProductsInCart();
         BigDecimal priceOrder = products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
         LocalDate date = LocalDate.now();
-        int idUser = (Integer) session.getAttribute("userid");
-        Order order = new Order(priceOrder, products, date, idUser);
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        Order order = new Order(priceOrder, products, date, loggedInUser.getIdUser());
         List<Order> orderStorage = OrderStorage.getOrderStorage();
         orderStorage.add(order);
         OrderStorage.setOrderStorage(orderStorage);

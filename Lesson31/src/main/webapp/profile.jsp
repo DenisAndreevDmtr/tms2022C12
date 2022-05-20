@@ -35,12 +35,12 @@
                      src="images/userinfo.png" alt="Userimage">
                 <div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>User login:</b> <a>${userlogin}</a></li>
-                        <li class="list-group-item"><b>User password:</b> <a>${userpassword}</a></li>
-                        <li class="list-group-item"><b>User name:</b> <a>${username}</a></li>
-                        <li class="list-group-item"><b>User surname:</b> <a>${usersurname}</a></li>
-                        <li class="list-group-item"><b>User dateborn:</b> <a>${userdateborn}</a></li>
-                        <li class="list-group-item"><b>user E-mail:</b> <a>${useremail}</a></li>
+                        <li class="list-group-item"><b>User login:</b> <a>${loggedInUser.getLogin()}</a></li>
+                        <li class="list-group-item"><b>User password:</b> <a>${loggedInUser.getPassword()}</a></li>
+                        <li class="list-group-item"><b>User name:</b> <a>${loggedInUser.getName()}</a></li>
+                        <li class="list-group-item"><b>User surname:</b> <a>${loggedInUser.getSurname()}</a></li>
+                        <li class="list-group-item"><b>User dateborn:</b> <a>${loggedInUser.getDateBorn()}</a></li>
+                        <li class="list-group-item"><b>user E-mail:</b> <a>${loggedInUser.geteMail()}</a></li>
                     </ul>
                 </div>
             </div>
