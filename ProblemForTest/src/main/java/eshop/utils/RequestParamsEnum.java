@@ -1,0 +1,37 @@
+package eshop.utils;
+
+public enum RequestParamsEnum {
+    LOGIN("username"),
+    PASSWORD("password"),
+    CONFIRM_PASSWORD("confirmpassword"),
+    NAME("name"),
+    SURNAME("surname"),
+    DATE_BORN("dateborn"),
+    EMAIL("email"),
+    COMMAND("command"),
+    SHOPPING_CART("cart"),
+    CATEGORY("category"),
+    PRODUCT("product"),
+    SHOPPING_CART_PRODUCTS("cartProductsList"),
+    SHOPPING_CART_SUM("choppingCartSum"),
+    PRODUCT_ID("product_id"),
+    CATEGORIES("categories"),
+    LOGGED_IN_USER("loggedInUser"),
+    CATEGORY_ID("category_id"),
+    ID_ORDER("idOrder"),
+    PRICE_ORDER("priceOrder"),
+    USER_ORDERS("orders")
+    ;
+
+
+    private final String value;
+
+    RequestParamsEnum(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}
+
