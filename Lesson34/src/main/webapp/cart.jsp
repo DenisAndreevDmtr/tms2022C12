@@ -28,7 +28,7 @@
 </div>
 
 <div class="container-fluid mb-4">
-    <c:forEach items="${cartProductsList}" var="product">
+    <c:forEach items="${cart.getProducts()}" var="product">
         <div class="card w-25 m-1" type="product">
             <div class="card-body">
                 <img class="card-img" style="width:45%;height:100%"
@@ -48,9 +48,9 @@
         </div>
     </c:forEach>
 
-    <c:if test="${not empty cartProductsList}">
+    <c:if test="${not empty cart.getProducts()}">
         <div class="total-sum center">
-            <b>Total sum ${choppingCartSum}</b>
+            <b>Total sum ${cart.getTotalPrice()}</b>
 
             <a href="${contextPath}/eshop?command=order">
                 <button class="btn-class">

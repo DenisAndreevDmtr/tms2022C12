@@ -27,15 +27,8 @@ public class AddProductToCartCommandImpl implements BaseCommand {
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter(PRODUCT_ID.getValue()));
         Product product = ProductsStorage.getProductById(productId);
-
-        Cart cart;
         Object objCart = session.getAttribute(SHOPPING_CART.getValue());
-
-        if (objCart != null) {
-            cart = (Cart) objCart;
-        } else {
-            cart = new Cart();
-        }
+        Cart cart = Cart.createCart(objCart);
         cart.addProduct(product);
         session.setAttribute(SHOPPING_CART.getValue(), cart);
         request.setAttribute(PRODUCT.getValue(), product);

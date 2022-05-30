@@ -9,7 +9,6 @@ import java.util.List;
 
 @Getter
 @Setter
-
 public class OrderStorage {
     private static List<Order> ordersInStorage = new ArrayList<>();
 

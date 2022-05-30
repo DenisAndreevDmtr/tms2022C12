@@ -1,7 +1,12 @@
 package by.teachmeskills.eshop.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class User {
     private static int idCounter = 1;
     private int idUser;
@@ -28,37 +33,5 @@ public class User {
         this.login = login;
         this.password = password;
         this.idUser = idCounter++;
-    }
-
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public LocalDate getDateBorn() {
-        return dateBorn;
-    }
-
-    public String geteMail() {
-        return eMail;
     }
 }

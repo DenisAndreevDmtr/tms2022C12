@@ -18,18 +18,25 @@ public class Cart {
         this.products = new HashMap<>();
     }
 
-
-
+    public static Cart createCart(Object objCart) {
+        Cart cart;
+        if (objCart != null) {
+            cart = (Cart) objCart;
+        } else {
+            cart = new Cart();
+        }
+        return cart;
+    }
 
     public void addProduct(Product product) {
         products.put(product.getId(), product);
-        totalPrice=totalPrice.add(product.getPrice());
+        totalPrice = totalPrice.add(product.getPrice());
     }
 
     public void removeProduct(int productId) {
         Product product = products.get(productId);
         products.remove(productId);
-        totalPrice=totalPrice.subtract(product.getPrice());
+        totalPrice = totalPrice.subtract(product.getPrice());
     }
 
     public List<Product> getProducts() {
@@ -43,5 +50,4 @@ public class Cart {
     public void clear() {
         products.clear();
     }
-
 }

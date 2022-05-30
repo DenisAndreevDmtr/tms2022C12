@@ -15,8 +15,6 @@ public enum CommandsEnum {
     REDIRECT_PROFILE("redirect-to-profile")
     ;
 
-
-
     private final String command;
 
     CommandsEnum(String command) {

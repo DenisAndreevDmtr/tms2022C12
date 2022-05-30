@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import static by.teachmeskills.eshop.utils.PagesPathEnum.CART_PAGE;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.SHOPPING_CART;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.SHOPPING_CART_PRODUCTS;
-import static by.teachmeskills.eshop.utils.RequestParamsEnum.SHOPPING_CART_SUM;
 
 public class RedirectToShoppingCartImpl implements BaseCommand {
 
@@ -19,11 +18,8 @@ public class RedirectToShoppingCartImpl implements BaseCommand {
         Cart cart = (Cart) session.getAttribute(SHOPPING_CART.getValue());
         if (cart == null) {
             request.setAttribute(SHOPPING_CART_PRODUCTS.getValue(), "");
-        } else {
-            request.setAttribute(SHOPPING_CART_PRODUCTS.getValue(), cart.getProducts());
-            request.setAttribute(SHOPPING_CART_SUM.getValue(), cart.getTotalPrice());
         }
-        session.setAttribute(SHOPPING_CART_PRODUCTS.getValue(), cart.getProducts());
+        session.setAttribute(SHOPPING_CART.getValue(), cart);
         return CART_PAGE.getPath();
     }
 }
