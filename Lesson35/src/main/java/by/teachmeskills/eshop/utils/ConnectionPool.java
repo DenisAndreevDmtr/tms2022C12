@@ -9,14 +9,12 @@ import java.util.concurrent.BlockingQueue;
 
 public class ConnectionPool {
     private static volatile ConnectionPool instance;
-
     private static final String DB_PROPERTY_FILE = "application";
     private static final String DB_URL = "db.url";
     private static final String DB_LOGIN = "db.login";
     private static final String DB_PASS = "db.pass";
     private static final int MAX_CONNECTION_COUNT = 10;
     private static final int MIN_CONNECTION_COUNT = 8;
-
     private static String url;
     private static String login;
     private static String pass;
@@ -31,7 +29,6 @@ public class ConnectionPool {
     private volatile int currentConnectionNumber = MIN_CONNECTION_COUNT;
     private BlockingQueue<Connection> pool = new ArrayBlockingQueue<>(MAX_CONNECTION_COUNT, true);
 
-    //Singleton
     public static ConnectionPool getInstance() {
         if (instance == null) {
             synchronized (ConnectionPool.class) {
@@ -40,10 +37,8 @@ public class ConnectionPool {
                 }
             }
         }
-
         return instance;
     }
-
 
     private ConnectionPool() {
         for (int i = 0; i < MIN_CONNECTION_COUNT; i++) {
@@ -78,7 +73,6 @@ public class ConnectionPool {
             Thread.currentThread().interrupt();
             throw new Exception("Max count of connections was reached!");
         }
-
         return connection;
     }
 
@@ -95,5 +89,4 @@ public class ConnectionPool {
             }
         }
     }
-
 }

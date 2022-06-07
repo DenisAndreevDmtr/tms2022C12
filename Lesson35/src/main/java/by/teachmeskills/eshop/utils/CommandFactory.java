@@ -1,12 +1,11 @@
 package by.teachmeskills.eshop.utils;
 
-
 import by.teachmeskills.eshop.commands.AddProductToCartCommandImpl;
 import by.teachmeskills.eshop.commands.BaseCommand;
 import by.teachmeskills.eshop.commands.CategoryRedirectCommandImpl;
 import by.teachmeskills.eshop.commands.DeleteProductFromCartCommandImpl;
 import by.teachmeskills.eshop.commands.HomePageCommandImpl;
-import by.teachmeskills.eshop.commands.OrderProcessImpl;
+import by.teachmeskills.eshop.commands.OrderProcessCommandImpl;
 import by.teachmeskills.eshop.commands.RedirectProductPageCommandImpl;
 import by.teachmeskills.eshop.commands.RedirectToProfileImpl;
 import by.teachmeskills.eshop.commands.RedirectToRegisterImpl;
@@ -33,7 +32,7 @@ public class CommandFactory {
         COMMAND_LIST.put(CommandsEnum.REGISTER_COMMAND.getCommand(), new RedirectToRegisterImpl());
         COMMAND_LIST.put(CommandsEnum.STATUS_REGISTER_COMMAND.getCommand(), new RedirectToStatusRegisterImpl());
         COMMAND_LIST.put(CommandsEnum.REDIRECT_PROFILE.getCommand(), new RedirectToProfileImpl());
-        COMMAND_LIST.put(CommandsEnum.ORDER_COMMAND.getCommand(), new OrderProcessImpl());
+        COMMAND_LIST.put(CommandsEnum.ORDER_COMMAND.getCommand(), new OrderProcessCommandImpl());
         COMMAND_LIST.put(CommandsEnum.SEARCH_COMMAND.getCommand(), new SearchCommandImpl());
     }
 
@@ -44,6 +43,4 @@ public class CommandFactory {
         }
         return COMMAND_LIST.get(commandKey);
     }
-
 }
-

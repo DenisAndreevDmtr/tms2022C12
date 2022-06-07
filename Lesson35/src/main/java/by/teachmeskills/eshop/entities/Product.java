@@ -12,22 +12,22 @@ public class Product extends BaseEntity {
     private String imageName;
     private String description;
     private BigDecimal price;
-    private int idCategory;
+    private int categoryId;
 
-    public Product(int id, String name, String imageName, String description, BigDecimal price, int idCategory) {
+    public Product(int id, String name, String imageName, String description, BigDecimal price, int categoryId) {
         super(id);
         this.name = name;
         this.imageName = imageName;
         this.description = description;
         this.price = price;
-        this.idCategory = idCategory;
+        this.categoryId = categoryId;
     }
 
-    public Product(String name, String imageName, String description, BigDecimal price, int idCategory) {
+    public Product(String name, String imageName, String description, BigDecimal price, int categoryId) {
         this.name = name;
         this.imageName = imageName;
         this.description = description;
         this.price = price;
-        this.idCategory = idCategory;
+        this.categoryId = categoryId;
     }
 }

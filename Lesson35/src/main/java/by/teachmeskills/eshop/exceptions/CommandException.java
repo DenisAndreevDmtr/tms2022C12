@@ -5,4 +5,3 @@ public class CommandException extends Exception {
         super(message);
     }
 }
-

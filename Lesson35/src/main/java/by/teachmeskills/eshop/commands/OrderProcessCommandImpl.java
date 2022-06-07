@@ -23,9 +23,8 @@ import static by.teachmeskills.eshop.utils.RequestParamsEnum.PRICE_ORDER;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.SHOPPING_CART;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.SHOPPING_CART_PRODUCTS;
 
-public class OrderProcessImpl implements BaseCommand {
-
-    private final static Logger log = LoggerFactory.getLogger(OrderProcessImpl.class);
+public class OrderProcessCommandImpl implements BaseCommand {
+    private final static Logger log = LoggerFactory.getLogger(OrderProcessCommandImpl.class);
     private final OrderRepository orderRepository = new OrderRepositoryImpl();
 
     @Override
@@ -36,11 +35,8 @@ public class OrderProcessImpl implements BaseCommand {
         BigDecimal priceOrder = cart.getTotalPrice();
         LocalDate date = LocalDate.now();
         User loggedInUser = (User) session.getAttribute(LOGGED_IN_USER.getValue());
-        Order order = new Order(priceOrder, date, loggedInUser.getId());
+        Order order= new Order(priceOrder, date, loggedInUser.getId(), products);
         Order createdOrder = orderRepository.create(order);
-        for (Product p : products) {
-            orderRepository.create(p.getId(), createdOrder.getId());
-        }
         cart.clear();
         cart.setTotalPrice(new BigDecimal(0));
         session.setAttribute(SHOPPING_CART_PRODUCTS.getValue(), cart);
@@ -50,4 +46,3 @@ public class OrderProcessImpl implements BaseCommand {
         return PagesPathEnum.ORDER_PAGE.getPath();
     }
 }
-

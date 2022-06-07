@@ -18,9 +18,7 @@ import static by.teachmeskills.eshop.utils.RequestParamsEnum.PRODUCT;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.PRODUCT_ID;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.SHOPPING_CART;
 
-
 public class AddProductToCartCommandImpl implements BaseCommand {
-
     private final static Logger log = LoggerFactory.getLogger(AddProductToCartCommandImpl.class);
     private final ProductRepository productRepository = new ProductRepositoryImpl();
 
@@ -30,7 +28,7 @@ public class AddProductToCartCommandImpl implements BaseCommand {
         int productId = Integer.parseInt(request.getParameter(PRODUCT_ID.getValue()));
         Product product = productRepository.getProductById(productId);
         Object objCart = session.getAttribute(SHOPPING_CART.getValue());
-        Cart cart = Cart.createCart(objCart);
+        Cart cart = Cart. checkCartExistsOrCreate(objCart);
         cart.addProduct(product);
         session.setAttribute(SHOPPING_CART.getValue(), cart);
         request.setAttribute(PRODUCT.getValue(), product);
@@ -39,4 +37,3 @@ public class AddProductToCartCommandImpl implements BaseCommand {
         return PRODUCT_PAGE.getPath();
     }
 }
-

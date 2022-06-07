@@ -1,7 +1,6 @@
 package by.teachmeskills.eshop.utils;
 
 public enum CommandsEnum {
-
     HOME_PAGE_COMMAND("start_page"),
     SIGN_IN_COMMAND("sign-in"),
     CATEGORY_PAGE_COMMAND("category-redirect"),
@@ -15,7 +14,6 @@ public enum CommandsEnum {
     REDIRECT_PROFILE("redirect-to-profile"),
     SEARCH_COMMAND("search");
 
-
     private final String command;
 
     CommandsEnum(String command) {
@@ -26,4 +24,3 @@ public enum CommandsEnum {
         return command;
     }
 }
-

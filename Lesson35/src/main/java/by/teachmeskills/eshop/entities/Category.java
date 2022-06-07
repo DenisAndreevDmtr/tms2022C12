@@ -12,7 +12,6 @@ public class Category extends BaseEntity {
     private int rating;
     private String imageName;
 
-
     public Category(int id, String name, int rating, String imageName) {
         super(id);
         this.name = name;

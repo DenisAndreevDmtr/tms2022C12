@@ -5,25 +5,37 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 public class Order extends BaseEntity {
     private BigDecimal priceOrder;
     private LocalDate date;
-    private int idUser;
+    private int userId;
+    private List<Product> productsInOrder;
 
-    public Order(int id, BigDecimal priceOrder, LocalDate date, int idUser) {
+    public Order(int id, BigDecimal priceOrder, LocalDate date, int userId) {
         super(id);
         this.priceOrder = priceOrder;
         this.date = date;
-        this.idUser = idUser;
+        this.userId = userId;
     }
 
-    public Order(BigDecimal priceOrder, LocalDate date, int idUser) {
+    public Order(BigDecimal priceOrder, LocalDate date, int userId) {
         this.priceOrder = priceOrder;
         this.date = date;
-        this.idUser = idUser;
+        this.userId = userId;
+    }
+
+    public Order(BigDecimal priceOrder, LocalDate date, int userId, List<Product> productsInOrder) {
+        this.priceOrder = priceOrder;
+        this.date = date;
+        this.userId = userId;
+        this.productsInOrder = productsInOrder;
+    }
+
+    public List<Product> getProductsInOrder() {
+        return productsInOrder;
     }
 }
-

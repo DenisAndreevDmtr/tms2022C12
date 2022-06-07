@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.PRODUCT;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.PRODUCT_ID;
 
-
 public class RedirectProductPageCommandImpl implements BaseCommand {
-
     private ProductRepository productRepository = new ProductRepositoryImpl();
 
     @Override
@@ -22,6 +20,5 @@ public class RedirectProductPageCommandImpl implements BaseCommand {
         Product product = productRepository.getProductById(productId);
         request.setAttribute(PRODUCT.getValue(), product);
         return PagesPathEnum.PRODUCT_PAGE.getPath();
-
     }
 }

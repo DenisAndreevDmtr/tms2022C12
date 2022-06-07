@@ -56,24 +56,24 @@
     <div class="container-orders-title">
         <p>History</p>
     </div>
-    <c:if test="${not empty orderProductsComposits}">
-        <c:forEach items="${orderProductsComposits}" var="orderProductsComposit">
+    <c:if test="${not empty userOrders}">
+        <c:forEach items="${userOrders}" var="userOrder">
             <div class="order">
                 <div class="order-info">
-                    <p>ID number order:<b> ${orderProductsComposit.getOrder().getId()}</b></p>
-                    <p> Sum order:<b> ${orderProductsComposit.getOrder().getPriceOrder()}</b></p>
-                    <p> Date order:<b> ${orderProductsComposit.getOrder().getDate()}</b></p>
+                    <p>ID number order:<b> ${userOrder.getId()}</b></p>
+                    <p> Sum order:<b> ${userOrder.getPriceOrder()}</b></p>
+                    <p> Date order:<b> ${userOrder.getDate()}</b></p>
                 </div>
                 <div class="row order-list">
-                    <c:forEach items="${orderProductsComposit.getProductList()}" var="products">
+                    <c:forEach items="${userOrder.getProductsInOrder()}" var="product">
                         <div class="card-body order-product">
                             <img class="card-img" style="width:50px;height:50px"
-                                 src="images/${products.getImageName()}" alt="Product image"/>
+                                 src="images/${product.getImageName()}" alt="Product image"/>
                             <ul class="list-group order-product-info">
-                                <li class="list-group-item"><b>Name:</b> <a>${products.getName()}</a></li>
-                                <li class="list-group-item"><b>Description:</b> <a>${products.getDescription()}</a>
+                                <li class="list-group-item"><b>Name:</b> <a>${product.getName()}</a></li>
+                                <li class="list-group-item"><b>Description:</b> <a>${product.getDescription()}</a>
                                 </li>
-                                <li class="list-group-item"><b>Price:</b> <a>${products.getPrice()}</a></li>
+                                <li class="list-group-item"><b>Price:</b> <a>${product.getPrice()}</a></li>
                             </ul>
                         </div>
                     </c:forEach>

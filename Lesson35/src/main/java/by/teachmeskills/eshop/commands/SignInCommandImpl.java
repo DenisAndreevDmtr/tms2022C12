@@ -1,6 +1,5 @@
 package by.teachmeskills.eshop.commands;
 
-
 import by.teachmeskills.eshop.entities.Cart;
 import by.teachmeskills.eshop.entities.Category;
 import by.teachmeskills.eshop.entities.User;
@@ -25,19 +24,16 @@ import static by.teachmeskills.eshop.utils.RequestParamsEnum.LOGGED_IN_USER;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.SHOPPING_CART;
 
 public class SignInCommandImpl implements BaseCommand {
-
     private final static Logger log = LoggerFactory.getLogger(SignInCommandImpl.class);
-    private CategoryRepository categoryRepository = new CategoryRepositoryImpl();
-    private UserRepository userRepository = new UserRepositoryImpl();
+    private final CategoryRepository categoryRepository = new CategoryRepositoryImpl();
+    private final UserRepository userRepository = new UserRepositoryImpl();
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         String login = request.getParameter(RequestParamsEnum.LOGIN.getValue());
         String pass = request.getParameter(RequestParamsEnum.PASSWORD.getValue());
-
         validateParamNotNull(login);
         validateParamNotNull(pass);
-
         User user = new User(login, pass);
         return checkReceivedUser(user, request);
     }
@@ -62,5 +58,4 @@ public class SignInCommandImpl implements BaseCommand {
             return PagesPathEnum.SIGN_IN_PAGE.getPath();
         }
     }
-
 }

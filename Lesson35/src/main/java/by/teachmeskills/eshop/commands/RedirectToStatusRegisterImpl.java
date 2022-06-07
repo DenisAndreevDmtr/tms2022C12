@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class RedirectToStatusRegisterImpl implements BaseCommand {
-
     private final static Logger log = LoggerFactory.getLogger(RedirectToStatusRegisterImpl.class);
     private UserRepository userRepository = new UserRepositoryImpl();
 
@@ -31,7 +30,6 @@ public class RedirectToStatusRegisterImpl implements BaseCommand {
         String email = request.getParameter(RequestParamsEnum.EMAIL.getValue());
         request.setAttribute(RequestParamsEnum.LOGIN.getValue(), login);
         if (userRepository.getUserByLogin(login).isEmpty()) {
-
             User registeredUser = new User(login, password, name, surname, date, email, new BigDecimal(0));
             User savedUser = userRepository.create(registeredUser);
             log.info("user with login " + savedUser.getLogin() + " and password " + savedUser.getPassword() + " registered and saved into db. New user id is " + savedUser.getId());

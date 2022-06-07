@@ -13,7 +13,4 @@ import lombok.experimental.SuperBuilder;
 @Builder
 public class BaseEntity {
     protected int id;
-
 }
-
-

@@ -19,7 +19,7 @@ public enum RequestParamsEnum {
     CATEGORY_ID("category_id"),
     ID_ORDER("idOrder"),
     PRICE_ORDER("priceOrder"),
-    USER_ORDERS("orderProductsComposits"),
+    USER_ORDERS("userOrders"),
     SEARCH_PARAMETR("searchParametr"),
     SEARCH_RESULT("search_result"),
     NAME_CATEGORY("namecategory");
@@ -34,4 +34,3 @@ public enum RequestParamsEnum {
         return value;
     }
 }
-

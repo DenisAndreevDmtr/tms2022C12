@@ -15,10 +15,8 @@ import java.util.stream.Collectors;
 
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.SEARCH_RESULT;
 
-
 public class SearchCommandImpl implements BaseCommand {
-
-    private ProductRepository productRepository = new ProductRepositoryImpl();
+    private final ProductRepository productRepository = new ProductRepositoryImpl();
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
@@ -27,7 +25,7 @@ public class SearchCommandImpl implements BaseCommand {
         if (Optional.ofNullable(searchParametr).isEmpty()) {
             return PagesPathEnum.SEARCH_PRODUCT_PAGE.getPath();
         } else {
-            List<Product> productListResult = productRepository.getListProductsbyRequest(searchParametr);
+            List<Product> productListResult = productRepository.getListProductsByNameOrDesc(searchParametr);
             requestProducts.addAll(productListResult.stream().filter(x -> x.getName().contains(searchParametr)).collect(Collectors.toList()));
             requestProducts.addAll(productListResult.stream().filter(x -> !x.getName().contains(searchParametr)).collect(Collectors.toList()));
         }
@@ -35,4 +33,3 @@ public class SearchCommandImpl implements BaseCommand {
         return PagesPathEnum.SEARCH_PRODUCT_PAGE.getPath();
     }
 }
-

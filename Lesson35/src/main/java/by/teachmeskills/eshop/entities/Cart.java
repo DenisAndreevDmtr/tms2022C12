@@ -10,7 +10,6 @@ import java.util.Map;
 
 @Setter
 public class Cart {
-
     private Map<Integer, Product> products;
     private BigDecimal totalPrice = new BigDecimal(0);
 
@@ -29,7 +28,7 @@ public class Cart {
         totalPrice = totalPrice.subtract(product.getPrice());
     }
 
-    public static Cart createCart(Object objCart) {
+    public static Cart checkCartExistsOrCreate(Object objCart) {
         Cart cart;
         if (objCart != null) {
             cart = (Cart) objCart;
@@ -50,5 +49,4 @@ public class Cart {
     public void clear() {
         products.clear();
     }
-
 }

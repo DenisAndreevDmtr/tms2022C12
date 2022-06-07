@@ -1,19 +1,18 @@
 package by.teachmeskills.eshop.repositories;
 
 import by.teachmeskills.eshop.entities.Order;
-import by.teachmeskills.eshop.entities.Product;
 
 import java.util.List;
 
 
 public interface OrderRepository extends BaseRepository<Order> {
-    Order getOrderByIdOrder(int id);
+    Order getOrderById(int id);
 
-    Order getOrderByIdUser(int id);
+    Order getOrderByUserId(int id);
 
-    List<Product> getAllProductsByIdOrder(int id);
+//    List<Product> getAllProductsByOrderId(int id);
 
-    List<Integer> getAllIdOrdersByUserId(int id);
+    List<Integer> getAllOrdersIdsByUserId(int id);
 
     void create(int productId, int orderId);
 }

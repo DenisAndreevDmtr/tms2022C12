@@ -6,5 +6,3 @@ public class RequestParamNullException extends CommandException {
         super(message);
     }
 }
-
-

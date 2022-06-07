@@ -16,14 +16,13 @@ import static by.teachmeskills.eshop.utils.RequestParamsEnum.CATEGORY_ID;
 import static by.teachmeskills.eshop.utils.RequestParamsEnum.NAME_CATEGORY;
 
 public class CategoryRedirectCommandImpl implements BaseCommand {
-
     private final CategoryRepository categoryRepository = new CategoryRepositoryImpl();
     private final ProductRepository productRepository = new ProductRepositoryImpl();
 
     @Override
     public String execute(HttpServletRequest request) throws CommandException {
         int id = Integer.parseInt(request.getParameter(CATEGORY_ID.getValue()));
-        List<Product> products = productRepository.getAllProductsByIdCategory(id);
+        List<Product> products = productRepository.getAllProductsByCategoryId(id);
         request.setAttribute(NAME_CATEGORY.getValue(), categoryRepository.getCategoryNameByID(id));
         request.setAttribute(CATEGORY.getValue(), products);
         return PagesPathEnum.CATEGORY_PAGE.getPath();
