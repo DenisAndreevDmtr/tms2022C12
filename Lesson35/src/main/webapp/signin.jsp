@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login form example</title>
+    <title>Login form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="custom.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -18,7 +18,7 @@
         <h2>Login</h2>
         <p>Please, enter your credentials</p>
         <form method="post" class="needs-validation" novalidate>
-            <input type="hidden" name="command" value="sign-in" required/>
+            <input type="hidden" name="command" value="sign-in"/>
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control w-25" id="username" placeholder="Enter username" name="username"
@@ -27,19 +27,30 @@
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control w-25" id="password" placeholder="Enter password" name="password"
+                <input type="password" class="form-control w-25" id="password" placeholder="Enter password"
+                       name="password"
                        required>
                 <div class="invalid-feedback">Password should be entered!</div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary" style="width: 90px; margin: 5px 0;">Login</button>
         </form>
+
+        <a href="${contextPath}/eshop?command=register">
+            <button class="btn btn-primary" style="width: 90px; margin: 5px 0;" id="registerRedirect" type="submit">
+                Register
+            </button>
+        </a>
+
+        <%--        <button class="btn btn-primary" style="width: 90px; margin: 5px 0;"--%>
+        <%--                onclick="location.href='${contextPath}/register' ">Register--%>
+        <%--        </button>--%>
     </div>
 </div>
 <script>
     // Disable form submissions if there are invalid fields
-    (function() {
+    (function () {
         'use strict';
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             // Get the forms we want to add validation styles to
             var forms = document.getElementsByClassName('needs-validation');
             // Loop over them and prevent submission
