@@ -1,8 +1,8 @@
-<%@ page import="eshop.model.Product" %>
+<%@ page import="Product" %>
 <%@ page import="java.util.List" %>
-<%@ page import="eshop.model.Cart" %>
+<%@ page import="Cart" %>
 <%@ page import="java.math.BigDecimal" %>
-<%@ page import="eshop.model.Cart" %>
+<%@ page import="Cart" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
