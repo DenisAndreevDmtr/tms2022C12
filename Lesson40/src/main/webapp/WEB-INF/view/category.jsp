@@ -16,7 +16,7 @@
 </head>
 <body>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<h2>${namecategory}</h2>
+<h2>${category.getName()}</h2>
 
 <div class="container-buttons">
     <a href="${contextPath}/search">

@@ -71,6 +71,8 @@ public class UserServiceImpl implements UserService {
                 && Optional.ofNullable(user.getLogin()).isPresent()
                 && Optional.ofNullable(user.getPassword()).isPresent()) {
             if (userRepository.getUserByLoginAndPassword(user.getLogin(), user.getPassword()).isPresent()) {
+                User loggedInUser = userRepository.getUserByLoginAndPassword(user.getLogin(), user.getPassword()).get();
+                user.setId(loggedInUser.getId());
                 ModelMap modelMap = new ModelMap();
                 List<Category> categoriesList = categoryService.read();
                 modelMap.addAttribute(CATEGORIES.getValue(), categoriesList);
